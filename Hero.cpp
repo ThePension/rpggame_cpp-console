@@ -2,6 +2,17 @@
 using namespace std;
 namespace He_Arc::RPG
 {
+    // Constructors
+    Hero::Hero(){
+        this->Strength = 0;
+        this->Agility = 0;
+        this->Intelligence = 0;
+        this->HP = 0;
+        this->Name = "no_name";
+    }
+    Hero::Hero(int _strength, int _agility, int _intelligence, double _hp, std::string _name):Strength(_strength), Agility(_agility), Intelligence(_intelligence), HP(_hp), Name(_name) { }
+    
+    // Methods
     void Hero::Interact(const Hero &other)
     {
         cout << "Bonjour " << other.Name << " !" << endl;
