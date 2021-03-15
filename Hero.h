@@ -1,6 +1,7 @@
 #ifndef HERO_H
 #define HERO_H
 #include <iostream>
+#include "Sword.h"
 namespace He_Arc::RPG
 {
     class Hero
@@ -12,6 +13,7 @@ namespace He_Arc::RPG
         int Intelligence;
         double HP;
         std::string Name;
+        Sword Sword;
 
     public:
         // Constructors
