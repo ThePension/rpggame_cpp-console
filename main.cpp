@@ -1,8 +1,8 @@
 /*
 * Auteur      : Aubert Nicolas
 * Date        : 15.03.2021
-* Contexte    : 
-* Description : 
+* Contexte    : Langage c++ : Projet fil rouge
+* Description : Jeu RPG
 */
 #include <iostream>
 #include "Hero.h"
