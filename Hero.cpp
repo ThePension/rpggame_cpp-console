@@ -10,13 +10,18 @@ namespace He_Arc::RPG
         this->HP = 0;
         this->Name = "no_name";
     }
+    Hero::Hero(const Hero & hero){
+        this->Strength = hero.Strength;
+        this->Agility = hero.Agility;
+        this->Intelligence = hero.Intelligence;
+        this->HP = hero.HP;
+        this->Name = hero.Name;
+    }
     Hero::Hero(int _strength, int _agility, int _intelligence, double _hp, std::string _name):Strength(_strength), Agility(_agility), Intelligence(_intelligence), HP(_hp), Name(_name) { }
-    
     // Methods
     void Hero::Interact(const Hero &other)
     {
-        cout << "Bonjour " << other.Name << " !" << endl;
-        cout << "Bonjour " << this->Name << " !" << endl;
+        cout << "Hello valiant " << other.Name << " !" << " I'm " << this->Name << " !" << endl;
     }
     void Hero::Show()
     {
