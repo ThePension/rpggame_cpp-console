@@ -14,8 +14,12 @@ namespace He_Arc::RPG
         std::string Name;
 
     public:
+        // Constructors
+        Hero();
+        Hero(int _strength, int _agility, int _intelligence, double _hp, std::string _name);
+        // Methods
         void Show();
-        void Interact(const Hero &);
+        void Interact(const Hero &other);
         int GetAgility();
     };
 }
