@@ -14,7 +14,7 @@ int main(int argc, char const *argv[])
     Hero Bobby = Hero(4, 5, 11, 20, "Bobby");
     Hero Mamie = Hero(6, 3, 7, 50, "Mamie");
     Bobby.Show();
-    Mamie.Show();
+    cout << Mamie;
     Bobby.Interact(Mamie);
     return 0;
 }

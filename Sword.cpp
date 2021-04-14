@@ -1,8 +1,10 @@
 #include "Sword.h"
-using namespace std;
 namespace He_Arc::RPG
 {
     // Constructors
+    Sword::Sword(){
+        this->Damage = 0;
+    }
     Sword::Sword(int Damage){
         this->Damage = Damage;
     }

@@ -18,12 +18,13 @@ namespace He_Arc::RPG
     public:
         // Constructors
         Hero();
-        Hero(const Hero &);
+        // Hero(const Hero &);
         Hero(int _strength, int _agility, int _intelligence, double _hp, std::string _name);
         // Methods
         void Show();
         void Interact(const Hero &other);
         int GetAgility();
+        friend std::ostream& operator<<(std::ostream& os, const Hero & _Hero);
     };
 }
 #endif
