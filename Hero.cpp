@@ -15,13 +15,14 @@ namespace He_Arc::RPG
     Hero::~Hero() {
         delete Sword;
     }
-    /*Hero::Hero(const Hero & hero){
+    Hero::Hero(const Hero & hero){
         this->Strength = hero.Strength;
         this->Agility = hero.Agility;
         this->Intelligence = hero.Intelligence;
         this->HP = hero.HP;
         this->Name = hero.Name;
-    }*/
+        this->Sword = hero.Sword;
+    }
     Hero::Hero(int _strength, int _agility, int _intelligence, double _hp, std::string _name, RPG::Sword* _sword)
                 :Strength(_strength), Agility(_agility), Intelligence(_intelligence), HP(_hp), Name(_name), Sword(_sword) { }
     // Methods

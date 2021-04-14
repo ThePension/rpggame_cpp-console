@@ -18,7 +18,7 @@ namespace He_Arc::RPG
     public:
         // Constructors
         Hero();
-        // Hero(const Hero &);
+        Hero(const Hero &);
         Hero(int _strength, int _agility, int _intelligence, double _hp, std::string _name, RPG::Sword * _sword = nullptr);
         // Destructors
         ~Hero();
