@@ -13,13 +13,13 @@ namespace He_Arc::RPG
         int Intelligence;
         double HP;
         std::string Name;
-        Sword Sword;
+        Sword * Sword = nullptr;
 
     public:
         // Constructors
         Hero();
         // Hero(const Hero &);
-        Hero(int _strength, int _agility, int _intelligence, double _hp, std::string _name);
+        Hero(int _strength, int _agility, int _intelligence, double _hp, std::string _name, RPG::Sword * _sword = nullptr);
         // Methods
         void Show();
         void Interact(const Hero &other);

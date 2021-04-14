@@ -1,4 +1,5 @@
 #include "Hero.h"
+#include "Sword.h"
 using namespace std;
 namespace He_Arc::RPG
 {
@@ -9,6 +10,7 @@ namespace He_Arc::RPG
         this->Intelligence = 0;
         this->HP = 0;
         this->Name = "no_name";
+        this->Sword = nullptr;
     }
     /*Hero::Hero(const Hero & hero){
         this->Strength = hero.Strength;
@@ -17,8 +19,8 @@ namespace He_Arc::RPG
         this->HP = hero.HP;
         this->Name = hero.Name;
     }*/
-    Hero::Hero(int _strength, int _agility, int _intelligence, double _hp, std::string _name)
-                :Strength(_strength), Agility(_agility), Intelligence(_intelligence), HP(_hp), Name(_name) { }
+    Hero::Hero(int _strength, int _agility, int _intelligence, double _hp, std::string _name, RPG::Sword* _sword)
+                :Strength(_strength), Agility(_agility), Intelligence(_intelligence), HP(_hp), Name(_name), Sword(_sword) { }
     // Methods
     ostream& operator<<(ostream& os, const Hero & _Hero)
     {
