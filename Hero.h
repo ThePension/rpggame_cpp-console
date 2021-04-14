@@ -20,6 +20,8 @@ namespace He_Arc::RPG
         Hero();
         // Hero(const Hero &);
         Hero(int _strength, int _agility, int _intelligence, double _hp, std::string _name, RPG::Sword * _sword = nullptr);
+        // Destructors
+        ~Hero();
         // Methods
         void Show();
         void Interact(const Hero &other);

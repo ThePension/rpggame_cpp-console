@@ -12,6 +12,9 @@ namespace He_Arc::RPG
         this->Name = "no_name";
         this->Sword = nullptr;
     }
+    Hero::~Hero() {
+        delete Sword;
+    }
     /*Hero::Hero(const Hero & hero){
         this->Strength = hero.Strength;
         this->Agility = hero.Agility;
