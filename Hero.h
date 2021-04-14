@@ -1,7 +1,7 @@
 #ifndef HERO_H
 #define HERO_H
 #include <iostream>
-#include "Sword.h"
+#include "Dagger.h"
 namespace He_Arc::RPG
 {
     class Hero
@@ -13,13 +13,13 @@ namespace He_Arc::RPG
         int Intelligence;
         double HP;
         std::string Name;
-        Sword * Sword = nullptr;
+        Dagger * Dagger = nullptr;
 
     public:
         // Constructors
         Hero();
         Hero(const Hero &);
-        Hero(int _strength, int _agility, int _intelligence, double _hp, std::string _name, RPG::Sword * _sword = nullptr);
+        Hero(int _strength, int _agility, int _intelligence, double _hp, std::string _name, RPG::Dagger * _dagger = nullptr);
         // Destructors
         ~Hero();
         // Methods
@@ -27,6 +27,7 @@ namespace He_Arc::RPG
         void Interact(const Hero &other);
         int GetAgility();
         friend std::ostream& operator<<(std::ostream& os, const Hero & _Hero);
+        Hero & operator=(const Hero &);
     };
 }
 #endif

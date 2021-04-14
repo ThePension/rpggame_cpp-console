@@ -10,11 +10,11 @@ namespace He_Arc::RPG
         this->Intelligence = 0;
         this->HP = 0;
         this->Name = "no_name";
-        this->Sword = nullptr;
+        this->Dagger = nullptr;
     }
     Hero::~Hero() {
-        delete Sword;
-        Sword = nullptr;
+        delete Dagger;
+        Dagger = nullptr;
     }
     Hero::Hero(const Hero & hero){
         this->Strength = hero.Strength;
@@ -22,10 +22,10 @@ namespace He_Arc::RPG
         this->Intelligence = hero.Intelligence;
         this->HP = hero.HP;
         this->Name = hero.Name;
-        this->Sword = hero.Sword;
+        this->Dagger = hero.Dagger;
     }
-    Hero::Hero(int _strength, int _agility, int _intelligence, double _hp, std::string _name, RPG::Sword* _sword)
-                :Strength(_strength), Agility(_agility), Intelligence(_intelligence), HP(_hp), Name(_name), Sword(_sword) { }
+    Hero::Hero(int _strength, int _agility, int _intelligence, double _hp, std::string _name, RPG::Dagger* _dagger)
+                :Strength(_strength), Agility(_agility), Intelligence(_intelligence), HP(_hp), Name(_name), Dagger(_dagger) { }
     // Methods
     ostream& operator<<(ostream& os, const Hero & _Hero)
     {
@@ -45,7 +45,7 @@ namespace He_Arc::RPG
             this->Intelligence = hero.Intelligence;
             this->HP = hero.HP;
             this->Name = hero.Name;
-            this->Sword = hero.Sword;
+            this->Dagger = hero.Dagger;
         }
         return *this;
     }
