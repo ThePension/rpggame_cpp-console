@@ -5,16 +5,16 @@
 * Description : Jeu RPG
 */
 #include <iostream>
-#include "Hero.h"
+#include "Nordic.h"
+#include "Dagger.h"
 using namespace std;
 using namespace He_Arc::RPG;
 
 int main(int argc, char const *argv[])
 {
-    Hero Bobby = Hero(4, 5, 11, 20, "Bobby");
-    Hero Mamie = Hero(6, 3, 7, 50, "Mamie");
-    Bobby.Show();
-    cout << Mamie;
-    Bobby.Interact(Mamie);
+    Dagger * _dagger = new Dagger();
+    Sword PyroBarbareSword = Sword(5);
+    Nordic PyroBarbare = Nordic(PyroBarbareSword, 20, 5, 15, 25, "PyroBarbare", _dagger);
+    PyroBarbare.Show();
     return 0;
 }

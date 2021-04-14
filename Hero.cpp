@@ -49,11 +49,11 @@ namespace He_Arc::RPG
         }
         return *this;
     }
-    void Hero::Interact(const Hero &other)
+    /*void Hero::Interact(const Hero &other)
     {
         cout << "Hello valiant " << other.Name << " !" << " I'm " << this->Name << " !" << endl;
-    }
-    void Hero::Show()
+    }*/
+    /*void Hero::Show()
     {
         cout << "=================" << endl;
         cout << "HERO : " << this->Name << endl;
@@ -62,5 +62,5 @@ namespace He_Arc::RPG
         cout << "agility : " << this->Agility << endl;
         cout << "intelligence : " << this->Intelligence << endl;
         cout << "HP : " << this->HP << endl;
-    }
+    }*/
 }
