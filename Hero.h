@@ -6,7 +6,7 @@ namespace He_Arc::RPG
 {
     class Hero
     {
-    private:
+    protected:
         // Attributs
         int Strength;
         int Agility;
@@ -23,9 +23,15 @@ namespace He_Arc::RPG
         // Destructors
         ~Hero();
         // Methods
-        void Show();
-        void Interact(const Hero &other);
-        int GetAgility();
+        virtual void Show() = 0;
+        virtual void Interact(const Hero &other) = 0;
+        // Getters
+        int GetAgility() const {return Agility; }
+        int GetStrength() const { return Strength; }
+        int GetIntelligence() const { return Intelligence; }
+        double GetHP() const { return HP; }
+        std::string GetName() const { return Name; }
+        RPG::Dagger* GetDagger() const { return Dagger; }
         friend std::ostream& operator<<(std::ostream& os, const Hero & _Hero);
         Hero & operator=(const Hero &);
     };
