@@ -14,6 +14,7 @@ namespace He_Arc::RPG
     }
     Hero::~Hero() {
         delete Sword;
+        Sword = nullptr;
     }
     Hero::Hero(const Hero & hero){
         this->Strength = hero.Strength;
@@ -36,6 +37,17 @@ namespace He_Arc::RPG
         os << "intelligence : " << _Hero.Intelligence << endl;
         os << "HP : " << _Hero.HP << endl;
         return os;
+    }
+    Hero & Hero::operator=(const Hero & hero){
+        if(this != &hero){
+        this->Strength = hero.Strength;
+            this->Agility = hero.Agility;
+            this->Intelligence = hero.Intelligence;
+            this->HP = hero.HP;
+            this->Name = hero.Name;
+            this->Sword = hero.Sword;
+        }
+        return *this;
     }
     void Hero::Interact(const Hero &other)
     {
