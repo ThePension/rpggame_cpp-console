@@ -1,4 +1,6 @@
 #include "Sword.h"
+#include "Hero.h"
+using namespace std;
 namespace He_Arc::RPG
 {
     // Constructors
@@ -9,6 +11,12 @@ namespace He_Arc::RPG
         this->Damage = Damage;
     }
     // Methods
+    void Sword::Stats(){
+        cout << "--- Sword ---" << endl;
+        cout << "Damage : " << this->Damage << endl;
+        cout << "Level  : " << this->Level << endl;
+        cout << "XP     : " << this->XP << endl;
+    }
     int Sword::GetDamage() const {
         return this->Damage;
     }

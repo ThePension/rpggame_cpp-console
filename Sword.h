@@ -1,9 +1,10 @@
 #ifndef SWORD_H
 #define SWORD_H
 #include <iostream>
+#include "Weapon.h"
 namespace He_Arc::RPG
 {
-    class Sword
+    class Sword : public Weapon
     {
         private:
             // Attributs
@@ -13,6 +14,7 @@ namespace He_Arc::RPG
             Sword();
             Sword(int Damage);
             // Methods
+            void Stats() override;
             int GetDamage() const;
     };
 }
