@@ -1,21 +1,21 @@
-#ifndef STAFF_H
-#define STAFF_H
+#ifndef SWORD_H
+#define SWORD_H
 #include <iostream>
-#include "Weapon.h"
+#include "../Weapon.h"
 namespace He_Arc::RPG
 {
-    class Staff : public Weapon
+    class Sword : public Weapon
     {
         private:
             // Attributs
-            int HealAmount;
+            int Damage;
         public:
             // Constructors
-            Staff();
-            Staff(int HealAmount);
+            Sword();
+            Sword(int Damage);
             // Methods
             void Stats() override;
-            int GetHealAmount() const;
+            int GetDamage() const;
     };
 }
 #endif

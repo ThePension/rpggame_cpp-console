@@ -1,7 +1,7 @@
 #ifndef HERO_H
 #define HERO_H
 #include <iostream>
-#include "Dagger.h"
+#include "../Weapons/Type/Dagger.h"
 namespace He_Arc::RPG
 {
     class Hero

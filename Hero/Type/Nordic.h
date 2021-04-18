@@ -1,8 +1,8 @@
 #ifndef NORDIC_H
 #define NORDIC_H
 #include <iostream>
-#include "Hero.h"
-#include "Sword.h"
+#include "../Hero.h"
+#include "../../Weapons/Type/Sword.h"
 namespace He_Arc::RPG
 {
     class Nordic : public Hero

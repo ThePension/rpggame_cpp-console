@@ -1,5 +1,4 @@
 #include "Sword.h"
-#include "Hero.h"
 using namespace std;
 namespace He_Arc::RPG
 {

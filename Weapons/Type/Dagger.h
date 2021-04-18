@@ -1,7 +1,7 @@
 #ifndef DAGGER_H
 #define DAGGER_H
 #include <iostream>
-#include "Weapon.h"
+#include "../Weapon.h"
 namespace He_Arc::RPG
 {
     class Dagger : public Weapon

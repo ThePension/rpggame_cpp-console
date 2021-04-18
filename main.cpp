@@ -5,8 +5,8 @@
 * Description : Jeu RPG
 */
 #include <iostream>
-#include "Nordic.h"
-#include "Dagger.h"
+#include "Hero/Type/Nordic.h"
+#include "Weapons/Type/Dagger.h"
 using namespace std;
 using namespace He_Arc::RPG;
 

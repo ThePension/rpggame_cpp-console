@@ -1,5 +1,5 @@
 #include "Dagger.h"
-#include "Hero.h"
+#include "../../Hero/Hero.h"
 using namespace std;
 namespace He_Arc::RPG
 {
