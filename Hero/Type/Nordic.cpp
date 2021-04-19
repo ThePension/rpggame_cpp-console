@@ -22,6 +22,7 @@ namespace He_Arc::RPG
         cout << "agility : " << this->Agility << endl;
         cout << "intelligence : " << this->Intelligence << endl;
         cout << "HP : " << this->HP << endl;
+        cout << "Stamina : " << this->Stamina << endl;
         cout << "Weapon : " << endl;
         this->Sword.Stats();
         this->Dagger->Stats();
