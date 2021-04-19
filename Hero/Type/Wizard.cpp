@@ -11,6 +11,7 @@ namespace He_Arc::RPG
         if(this->Mana >= 2){
             cout << "Fireball" << endl;
             this->Mana -=2;
+            cout << "Remaining mana : " << this->Mana << endl;
         }else{
             cout << "Not enough mana" << endl;
         }
@@ -30,7 +31,8 @@ namespace He_Arc::RPG
         cout << "intelligence : " << this->Intelligence << endl;
         cout << "HP : " << this->HP << endl;
         cout << "Mana : " << this->Mana << endl;
-        cout << "Spells : Cast Spell" << endl;
+        cout << "--- Spells ---" << endl;
+        cout << "- Cast Spell" << endl;
         this->Dagger->Stats();
     }
 }

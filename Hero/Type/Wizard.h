@@ -2,7 +2,6 @@
 #define WIZARD_H
 #include <iostream>
 #include "../Hero.h"
-#include "../../Weapons/Type/Sword.h"
 namespace He_Arc::RPG
 {
     class Wizard : public Hero

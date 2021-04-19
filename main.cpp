@@ -7,6 +7,7 @@
 #include <iostream>
 #include "Hero/Type/Nordic.h"
 #include "Hero/Type/Wizard.h"
+#include "Hero/Type/Necromancer.h"
 #include "Weapons/Type/Dagger.h"
 using namespace std;
 using namespace He_Arc::RPG;
@@ -24,5 +25,15 @@ int main(int argc, char const *argv[])
     Wizard GandoulfLeRose = Wizard(5, 15, 25, 10, "Gandoulf le Rose", GandoulfLeRose_dagger);
     GandoulfLeRose.CastSpell();
     GandoulfLeRose.Show();
+
+    // Test Necromancer class
+    Dagger * MolagBal_dagger = new Dagger();
+    Necromancer MolagBal = Necromancer(5, 15, 25, 10, "Molag Bal", MolagBal_dagger);
+    MolagBal.RiseUndeads();
+    MolagBal.CastSpell();
+    //MolagBal.RiseUndeads();
+    //MolagBal.RiseUndeads();
+    MolagBal.Show();
+
     return 0;
 }
