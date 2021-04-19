@@ -3,8 +3,9 @@ using namespace std;
 namespace He_Arc::RPG
 {
     // Constructors
-    Wizard::Wizard(int _strength, int _agility, int _intelligence, double _hp, std::string _name, RPG::Dagger* _dagger) 
+    Wizard::Wizard(RPG::Staff _staff, int _strength, int _agility, int _intelligence, double _hp, std::string _name, RPG::Dagger* _dagger) 
     : Hero(_strength, _agility, _intelligence, _hp, _name, _dagger){
+        this->Staff = _staff;
         this->Mana = 100;
     }
     void Wizard::CastSpell(){
@@ -31,6 +32,8 @@ namespace He_Arc::RPG
         cout << "intelligence : " << this->Intelligence << endl;
         cout << "HP : " << this->HP << endl;
         cout << "Mana : " << this->Mana << endl;
+        cout << "Weapons : " << endl;
+        this->Staff.Stats();
         cout << "--- Spells ---" << endl;
         cout << "- Cast Spell" << endl;
         this->Dagger->Stats();

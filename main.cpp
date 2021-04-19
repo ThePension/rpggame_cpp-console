@@ -11,6 +11,7 @@
 #include "Hero/Type/Wizard.h"
 #include "Hero/Type/Necromancer.h"
 #include "Weapons/Type/Dagger.h"
+#include "Weapons/Type/Staff.h"
 using namespace std;
 using namespace He_Arc::RPG;
 
@@ -27,14 +28,16 @@ int main(int argc, char const *argv[])
     Nordic * Arolde = new Nordic(Arolde_Sword, 20, 5, 15, 25, "PyroBarbare", Arolde_dagger);
 
     // Test Wizard class
+    Staff GandoulfLeRose_staff = Staff(5);
     Dagger * GandoulfLeRose_dagger = new Dagger();
-    Wizard * GandoulfLeRose = new Wizard(5, 15, 25, 10, "Gandoulf le Rose", GandoulfLeRose_dagger);
+    Wizard * GandoulfLeRose = new Wizard(GandoulfLeRose_staff, 5, 15, 25, 10, "Gandoulf le Rose", GandoulfLeRose_dagger);
     //GandoulfLeRose.CastSpell();
     //GandoulfLeRose.Show();
 
     // Test Necromancer class
+    Staff MolagBal_staff = Staff(5);
     Dagger * MolagBal_dagger = new Dagger();
-    Necromancer * MolagBal = new Necromancer(5, 15, 25, 10, "Molag Bal", MolagBal_dagger);
+    Necromancer * MolagBal = new Necromancer(MolagBal_staff, 5, 15, 25, 10, "Molag Bal", MolagBal_dagger);
     //MolagBal.RiseUndeads();
     //MolagBal.CastSpell();
     //MolagBal.Show();
