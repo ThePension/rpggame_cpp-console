@@ -15,5 +15,6 @@ namespace He_Arc::RPG
     }
     void Weapon::LevelUp(){
         this->Level+=1;
+        cout << "Weapon up to level " << this->Level << endl;
     }
 }
