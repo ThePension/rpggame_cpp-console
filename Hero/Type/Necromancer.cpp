@@ -3,8 +3,8 @@ using namespace std;
 namespace He_Arc::RPG
 {
     // Constructors
-    Necromancer::Necromancer(RPG::Staff _staff, int _strength, int _agility, int _intelligence, double _hp, std::string _name, RPG::Dagger* _dagger) 
-    : Wizard(_staff, _strength, _agility, _intelligence, _hp, _name, _dagger){ }
+    Necromancer::Necromancer(int x, int y, char charac, RPG::Staff _staff, int _strength, int _agility, int _intelligence, double _hp, std::string _name, RPG::Dagger* _dagger) 
+    : Wizard(x, y, charac, _staff, _strength, _agility, _intelligence, _hp, _name, _dagger){ }
     void Necromancer::RiseUndeads(){
         if(this->Mana >= 2){
             cout << "Rising undead" << endl;
@@ -15,7 +15,7 @@ namespace He_Arc::RPG
         }
     }
     // Methods
-    void Necromancer::Show()
+    void Necromancer::Show(int x, int y)
     {
         cout << "=================" << endl;
         cout << "Necromancer : " << this->Name << endl;

@@ -3,7 +3,7 @@ using namespace std;
 namespace He_Arc::RPG
 {
     // Constructors
-    Hero::Hero(){
+    Hero::Hero() {
         this->Strength = 0;
         this->Agility = 0;
         this->Intelligence = 0;
@@ -23,8 +23,18 @@ namespace He_Arc::RPG
         this->Name = hero.Name;
         this->Dagger = hero.Dagger;
     }
-    Hero::Hero(int _strength, int _agility, int _intelligence, double _hp, std::string _name, RPG::Dagger* _dagger)
-                :Strength(_strength), Agility(_agility), Intelligence(_intelligence), HP(_hp), Name(_name), Dagger(_dagger) { }
+    Hero::Hero(int x, int y, char charac, int _strength, int _agility, int _intelligence, double _hp, std::string _name, RPG::Dagger* _dagger)
+                : RoomObject(x, y, charac) // :Strength(_strength), Agility(_agility), Intelligence(_intelligence), HP(_hp), Name(_name), Dagger(_dagger) { }
+    {
+        this->Strength = _strength;
+        this->Agility = _agility;
+        this->Intelligence = _intelligence;
+        this->HP = _hp;
+        this->Name = _name;
+        this->Dagger = _dagger;
+    }
+                
+                
     // Methods
     ostream& operator<<(ostream& os, const Hero & _Hero)
     {

@@ -3,15 +3,15 @@ using namespace std;
 namespace He_Arc::RPG
 {
     // Constructors
-    Wizard::Wizard(RPG::Staff _staff, int _strength, int _agility, int _intelligence, double _hp, std::string _name, RPG::Dagger* _dagger) 
-    : Hero(_strength, _agility, _intelligence, _hp, _name, _dagger){
+    Wizard::Wizard(int x, int y, char charac, RPG::Staff _staff, int _strength, int _agility, int _intelligence, double _hp, std::string _name, RPG::Dagger* _dagger) 
+    : Hero(x, y, charac, _strength, _agility, _intelligence, _hp, _name, _dagger){
         this->Staff = _staff;
         this->Mana = 100;
     }
     void Wizard::CastSpell(){
         if(this->Mana >= 2){
             cout << "Fireball" << endl;
-            this->Mana -=2;
+            this->Mana -= 2;
             cout << "Remaining mana : " << this->Mana << endl;
         }else{
             cout << "Not enough mana" << endl;
@@ -22,7 +22,7 @@ namespace He_Arc::RPG
     {
         cout << "Hello valiant " << other.GetName() << " !" << " I'm " << this->Name << " !" << endl;
     }
-    void Wizard::Show()
+    void Wizard::Show(int x, int y)
     {
         cout << "=================" << endl;
         cout << "Wizard : " << this->Name << endl;

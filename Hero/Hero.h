@@ -2,9 +2,10 @@
 #define HERO_H
 #include <iostream>
 #include "../Weapons/Type/Dagger.h"
+#include "../Map/RoomObjects/RoomObject.h"
 namespace He_Arc::RPG
 {
-    class Hero
+    class Hero : public RoomObject
     {
     protected:
         // Attributs
@@ -19,11 +20,11 @@ namespace He_Arc::RPG
         // Constructors
         Hero();
         Hero(const Hero &);
-        Hero(int _strength, int _agility, int _intelligence, double _hp, std::string _name, RPG::Dagger * _dagger = nullptr);
+        Hero(int x, int y, char charac, int _strength, int _agility, int _intelligence, double _hp, std::string _name, RPG::Dagger * _dagger = nullptr);
         // Destructors
         ~Hero();
         // Methods
-        virtual void Show() = 0;
+        virtual void Show(int x, int y) = 0;
         virtual void Interact(const Hero &other) = 0;
         // Getters
         int GetAgility() const {return Agility; }
