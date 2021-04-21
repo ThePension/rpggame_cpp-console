@@ -4,13 +4,14 @@
 #include <list>
 #include "../RoomObject.h"
 #include "../../../Items/IItem.h"
+#include "../../../Inventory/Inventory.h"
 namespace He_Arc::RPG
 {
     class Chest : public RoomObject
     {
         private:
             // Attributs
-            std::list<IItem*> Content;
+            Inventory Content;
         public:
             // Constructors
             Chest();
