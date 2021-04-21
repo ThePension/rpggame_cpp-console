@@ -2,8 +2,7 @@
 #define INVENTORY_H
 #include <iostream>
 #include <list>
-#include "../../Items/IItem.h"
-#include "../Hero/Hero.h"
+#include "../Items/IItem.h"
 namespace He_Arc::RPG
 {
     class Inventory
@@ -15,11 +14,11 @@ namespace He_Arc::RPG
         public:
             // Constructors
             Inventory();
-            Inventory(int _size = 10);
+            Inventory(int _size);
             // Destructors
             ~Inventory();
             // Methods
-            void SetChestContent(const std::list<IItem*> _content);
+            void AddItems(const std::list<IItem*> _content);
             void AddItem(IItem * i);
             void Show(int x, int y);
             void GotoXY(int x, int y);

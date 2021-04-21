@@ -1,8 +1,10 @@
 #ifndef HERO_H
 #define HERO_H
 #include <iostream>
+#include "../Inventory/Inventory.h"
 #include "../Weapons/Type/Dagger.h"
 #include "../Map/RoomObjects/RoomObject.h"
+
 namespace He_Arc::RPG
 {
     class Hero : public RoomObject
@@ -14,6 +16,7 @@ namespace He_Arc::RPG
         int Intelligence;
         double HP;
         std::string Name;
+        Inventory Inventory;
         Dagger * Dagger = nullptr;
 
     public:
@@ -26,6 +29,7 @@ namespace He_Arc::RPG
         // Methods
         virtual void Show(int x, int y) = 0;
         virtual void Interact(const Hero &other) = 0;
+        void ShowInventory(int x, int y);
         // Getters
         int GetAgility() const {return Agility; }
         int GetStrength() const { return Strength; }

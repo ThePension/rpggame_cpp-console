@@ -5,15 +5,15 @@ using namespace std;
 namespace He_Arc::RPG
 {
     Inventory::Inventory(){
-
+        this->Size = 10;
     }
     Inventory::Inventory(int _size){
         this->Size = _size;
     }
     Inventory::~Inventory(){
-
+        while(!this->Content.empty()) delete this->Content.front(), this->Content.pop_front();
     }
-    void Inventory::SetChestContent(const std::list<IItem*> _content){
+    void Inventory::AddItems(const std::list<IItem*> _content){
         for(IItem *i : _content){
             Content.push_back(i);
         }
@@ -21,11 +21,11 @@ namespace He_Arc::RPG
     void Inventory::AddItem(IItem * i){
         Content.push_back(i);
     }
-    void Inventory::Show(int x, int y){
+    void Inventory::Show(int y, int x){
         int x1 = x;
         int y1 = y;
         for(const IItem * i : this->Content){
-            GotoXY(y1, x1); y1++;
+            GotoXY(y1, x1); x1++;
             cout << " - " << i->GetName() << endl;
         }
     }

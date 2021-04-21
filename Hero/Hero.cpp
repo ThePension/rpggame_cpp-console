@@ -33,7 +33,9 @@ namespace He_Arc::RPG
         this->Name = _name;
         this->Dagger = _dagger;
     }
-                
+    void Hero::ShowInventory(int x, int y){
+        this->Inventory.Show(x, y);
+    }
                 
     // Methods
     ostream& operator<<(ostream& os, const Hero & _Hero)
