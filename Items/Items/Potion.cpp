@@ -2,10 +2,15 @@
 using namespace std;
 namespace He_Arc::RPG
 {
-    std::string Potion::GetName(){
-        return "Potion : " + std::to_string(HealAmount) + "HP";
+    // Constructors
+    Potion::Potion(int _healAmout, std::string _name, bool _canBeStacked) : IItem(_name, _canBeStacked) {
+        this->HealAmount = _healAmout;
     }
-    std::string Potion::GetFeature(){
+        
+    std::string Potion::GetName() const{
+        return this->Name + " : " + std::to_string(this->HealAmount) + "HP";
+    }
+    std::string Potion::GetFeature() const{
         return "Heals the player HP";
     }
 }

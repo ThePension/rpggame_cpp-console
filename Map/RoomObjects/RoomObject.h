@@ -21,6 +21,7 @@ namespace He_Arc::RPG
             int GetX() const { return this->PosX; }
             int GetY() const { return this->PosY; }
             void GotoXY(int x, int y);
+            virtual void Show(int x, int y) = 0;
             // virtual void Interact() = 0;
     };
 }

@@ -13,7 +13,7 @@ namespace He_Arc::RPG
             int Width = 20;
             // char Pattern[10][20];
             Hero * Player;
-            RoomObject ROPattern[10][20];
+            RoomObject * ROPattern[10][20];
         public:
             // Constructors
             Room();

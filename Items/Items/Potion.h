@@ -8,17 +8,15 @@ namespace He_Arc::RPG
     {
         private:
             // Attributs
-            int HealAmount = 5;
+            int HealAmount;
         public:
             // Constructors
-            Potion() : HealAmount(5) {}
-            Potion(int HealAmout, std::string _name, bool _canBeStacked = false) : IItem(_name, _canBeStacked) {
-                this->HealAmount = HealAmount;
-            }
+            // Potion() : HealAmount(5) {}
+            Potion(int _healAmout, std::string _name, bool _canBeStacked = false);
             // Methods
             // std::string GetName() const { return this->Name; }
-            std::string GetName() override;
-            std::string GetFeature() override;
+            std::string GetName() const override;
+            std::string GetFeature() const override;
     };
 }
 #endif

@@ -1,20 +1,24 @@
 #ifndef CHEST_H
 #define CHEST_H
 #include <iostream>
+#include <list>
 #include "../RoomObject.h"
+#include "../../../Items/IItem.h"
 namespace He_Arc::RPG
 {
     class Chest : public RoomObject
     {
-        protected:
+        private:
             // Attributs
-            // Item Content
-            // std::string Name;
+            std::list<IItem*> Content;
         public:
             // Constructors
             Chest();
             Chest(int X, int Y, char charac) : RoomObject(X, Y, charac) {}
             // Methods
+            void SetChestContent(const std::list<IItem*> _content);
+            void AddItem(IItem * i);
+            void Show(int x, int y) override;
     };
 }
 #endif

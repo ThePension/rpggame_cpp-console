@@ -14,9 +14,8 @@ namespace He_Arc::RPG
             IItem();
             IItem(std::string _name, bool _canBeStacked = false) : Name(_name), CanBeStacked(_canBeStacked) {}
             // Methods
-            // std::string GetName() const { return this->Name; }
-            virtual std::string GetName() = 0;
-            virtual std::string GetFeature() = 0;
+            virtual std::string GetName() const = 0;
+            virtual std::string GetFeature() const = 0;
     };
 }
 #endif
