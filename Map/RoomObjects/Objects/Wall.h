@@ -2,6 +2,7 @@
 #define WALL_H
 #include <iostream>
 #include "../RoomObject.h"
+#include "../../../Inventory/Inventory.h"
 namespace He_Arc::RPG
 {
     class Wall : public RoomObject
@@ -14,6 +15,13 @@ namespace He_Arc::RPG
             Wall(const Wall & W);
             Wall(int X, int Y, char charac) : RoomObject(X, Y, charac) {}
             // Methods
+            void Show(int x, int y) override {}
+            void Interact(RoomObject * RO) override {}
+            std::list<IItem*> GetInventory() override {
+                std::list<IItem*> lst; 
+                return lst; 
+            }
+            void DeleteInventory() override {};
     };
 }
 #endif

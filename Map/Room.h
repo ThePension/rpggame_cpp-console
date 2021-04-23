@@ -17,14 +17,20 @@ namespace He_Arc::RPG
         public:
             // Constructors
             Room();
+            // Destructors
+            ~Room();
             // Room(int Heigth, int Width, std::string Pattern[20][20]);
             // Methods
             void Update(char key);
             void Display();
-            void CheckAround(int x, int y);
+            RoomObject * CheckAround(int x, int y);
             void GotoXY(int x, int y);
             void ShowPlayerStats();
+            void ShowPlayerInventory();
             void KeyHelp();
+            Hero * GetPlayer() { return this->Player; }
+            int GetPlayerX() { return this->Player->GetX(); }
+            int GetPlayerY() { return this->Player->GetY(); }
     };
 }
 #endif

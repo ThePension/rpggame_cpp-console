@@ -16,14 +16,21 @@ namespace He_Arc::RPG
         // Hero
         Dagger * PyroBarbareSword_dagger = new Dagger();
         Sword PyroBarbareSword = Sword(5);
-        Nordic * PyroBarbare = new Nordic(1,1,'X',PyroBarbareSword, 20, 5, 15, 25, "PyroBarbare", PyroBarbareSword_dagger);
+        Nordic * PyroBarbare = new Nordic(2,3,'X',PyroBarbareSword, 20, 5, 15, 25, "PyroBarbare", PyroBarbareSword_dagger);
         this->Player = PyroBarbare;
-        // Chest
+        // Chest 1
         Potion * _potion = new Potion(5, "Small potion", false);
         Potion * _potion2 = new Potion(10, "Medium potion", false);
         Chest * _chest = new Chest(9,3,'C');
         _chest->AddItem(_potion2);
         _chest->AddItem(_potion);
+
+        // Chest 2
+        Potion * _potion3 = new Potion(15, "Large potion", false);
+        Potion * _potion4 = new Potion(10, "Medium potion", false);
+        Chest * _chest2 = new Chest(1,8,'C');
+        _chest2->AddItem(_potion3);
+        _chest2->AddItem(_potion4);
         
         // Création d'un tableau temporaire, contenant le pattern de la pièce
         RoomObject * _pattern[Heigth][Width] = {
@@ -35,7 +42,7 @@ namespace He_Arc::RPG
             { new Wall(0,5,'|'), new Wall(1,5,' '), new Wall(2,5,' '), new Wall(3,5,' '), new Wall(4,5,' '), new Wall(5,5,' '), new Wall(6,5,' '), new Wall(7,5,' '), new Wall(8,5,' '), new Wall(9,5,' '), new Wall(10,5,' '), new Wall(11,5,' '), new Wall(12,5,' '), new Wall(13,5,' '), new Wall(14,5,' '), new Wall(15,5,' '), new Wall(16,5,' '), new Wall(17,5,' '), new Wall(18,5,' '), new Wall(19,5,'|')},
             { new Wall(0,6,'|'), new Wall(1,6,' '), new Wall(2,6,' '), new Wall(3,6,' '), new Wall(4,6,' '), new Wall(5,6,' '), new Wall(6,6,' '), new Wall(7,6,' '), new Wall(8,6,' '), new Wall(9,6,' '), new Wall(10,6,' '), new Wall(11,6,' '), new Wall(12,6,' '), new Wall(13,6,' '), new Wall(14,6,' '), new Wall(15,6,' '), new Wall(16,6,' '), new Wall(17,6,' '), new Wall(18,6,' '), new Wall(19,6,'|')},
             { new Wall(0,7,'|'), new Wall(1,7,' '), new Wall(2,7,' '), new Wall(3,7,' '), new Wall(4,7,' '), new Wall(5,7,' '), new Wall(6,7,' '), new Wall(7,7,' '), new Wall(8,7,' '), new Wall(9,7,' '), new Wall(10,7,' '), new Wall(11,7,' '), new Wall(12,7,' '), new Wall(13,7,' '), new Wall(14,7,' '), new Wall(15,7,' '), new Wall(16,7,' '), new Wall(17,7,' '), new Wall(18,7,' '), new Wall(19,7,'|')},
-            { new Wall(0,8,'|'), new Wall(1,8,' '), new Wall(2,8,' '), new Wall(3,8,' '), new Wall(4,8,' '), new Wall(5,8,' '), new Wall(6,8,' '), new Wall(7,8,' '), new Wall(8,8,' '), new Wall(9,8,' '), new Wall(10,8,' '), new Wall(11,8,' '), new Wall(12,8,' '), new Wall(13,8,' '), new Wall(14,8,' '), new Wall(15,8,' '), new Wall(16,8,' '), new Wall(17,8,' '), new Wall(18,8,' '), new Wall(19,8,'|')},
+            { new Wall(0,8,'|'), _chest2, new Wall(2,8,' '), new Wall(3,8,' '), new Wall(4,8,' '), new Wall(5,8,' '), new Wall(6,8,' '), new Wall(7,8,' '), new Wall(8,8,' '), new Wall(9,8,' '), new Wall(10,8,' '), new Wall(11,8,' '), new Wall(12,8,' '), new Wall(13,8,' '), new Wall(14,8,' '), new Wall(15,8,' '), new Wall(16,8,' '), new Wall(17,8,' '), new Wall(18,8,' '), new Wall(19,8,'|')},
             {new Wall(0,9,'\\'), new Wall(1,9,'_'), new Wall(2,9,'_'), new Wall(3,9,'_'), new Wall(4,9,'_'), new Wall(5,9,'_'), new Wall(6,9,'_'), new Wall(7,9,'_'), new Wall(8,9,'_'), new Wall(9,9,'_'), new Wall(10,9,'_'), new Wall(11,9,'_'), new Wall(12,9,'_'), new Wall(13,9,'_'), new Wall(14,9,'_'), new Wall(15,9,'_'), new Wall(16,9,'_'), new Wall(17,9,'_'), new Wall(18,9,'_'), new Wall(19,9,'/')},
         };
 
@@ -60,6 +67,16 @@ namespace He_Arc::RPG
             }
         }
     }
+    Room::~Room(){
+        for(int i = 0; i < Heigth; i++){
+            for(int y = 0; y < Width; y++){
+                delete this->ROPattern[i][y];
+                this->ROPattern[i][y] = nullptr;
+            }
+        }
+        delete this->Player;
+        this->Player = nullptr;
+    }
     /*Room::Room(int Heigth, int Width, std::string Pattern[20][20]) {
         string _pattern[20][20] = Pattern;
         this->Pattern = &_pattern;
@@ -73,6 +90,14 @@ namespace He_Arc::RPG
         cout << "Open inventory : i" << endl;
         cout << "Show player stats : $" << endl;
         cout << "Interact with object : f" << endl;
+        cout << "Quit : q" << endl;
+    }
+    void Room::ShowPlayerInventory(){
+        system("cls");
+        this->Display();
+        GotoXY(25,1);
+        cout << "Inventory :" << endl;
+        this->Player->ShowInventory(2, 25);
     }
     void Room::ShowPlayerStats(){
         system("cls");
@@ -110,7 +135,7 @@ namespace He_Arc::RPG
         COORD coord;
         coord.X = x;
         coord.Y = y;
-        SetConsoleCursorPosition( GetStdHandle( STD_OUTPUT_HANDLE ), coord );
+        SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
     }
     // Permet de mettre à jour la position du joueur en fonction de la touche pressée
     void Room::Update(char key) {
@@ -121,25 +146,31 @@ namespace He_Arc::RPG
                     {
                         case 'w':
                             if(ROPattern[i-1][y]->GetChar() == ' ') {
-                                this->ROPattern[i-1][y] = new Wall(i-1, y, 'X');
+                                this->ROPattern[i-1][y] = ROPattern[i][y];
+                                this->Player->SetY(i-1);
                                 this->ROPattern[i][y] = new Wall(i, y, ' ');
                             }
                             break;
                         case 's':
                             if(ROPattern[i+1][y]->GetChar() == ' ') {
-                                this->ROPattern[i+1][y] = new Wall(i+1, y, 'X');
+                                this->ROPattern[i+1][y] = ROPattern[i][y];
+                                this->Player->SetY(i+1);
                                 this->ROPattern[i][y] = new Wall(i, y, ' ');
                             }
                             break;
                         case 'a':
                             if(ROPattern[i][y-1]->GetChar() == ' ') {
-                                this->ROPattern[i][y-1] = new Wall(i, y-1, 'X');
+                                this->ROPattern[i][y-1] = ROPattern[i][y];
+                                this->Player->SetX(y-1);
                                 this->ROPattern[i][y] = new Wall(i, y, ' ');
                             }
                             break;
                         case 'd':
                              if(ROPattern[i][y+1]->GetChar() == ' ') {
-                                this->ROPattern[i][y+1] = new Wall(i, y+1, 'X');
+                                this->ROPattern[i][y+1] = ROPattern[i][y];
+                                this->Player->SetX(y+1);
+                                int posx = this->Player->GetX(); // Debug
+                                int poys = this->Player->GetY();
                                 this->ROPattern[i][y] = new Wall(i, y, ' ');
                              }
                             break;
@@ -150,19 +181,21 @@ namespace He_Arc::RPG
         }
     }
     // Fonction permettant de contrôler ce qu'il y autour du joueur
-    void Room::CheckAround(int x, int y){
+    RoomObject * Room::CheckAround(int x, int y){
         int lineNb = 2;
         for(int i = x-1; i <= x+1; i++){
             for(int j = y-1; j <= y+1; j++){
                 switch(ROPattern[i][j]->GetChar()){
                     case 'C':
                         GotoXY(25,lineNb);
-                        cout << "Coffre : ";
+                        cout << "Chest : ";
                         lineNb++;
                         ROPattern[i][j]->Show(25, lineNb);
+                        return ROPattern[i][j];
                         break;
-                }   
+                }
             }
         }
+        return nullptr;
     }
 }

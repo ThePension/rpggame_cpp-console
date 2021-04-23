@@ -14,4 +14,7 @@ namespace He_Arc::RPG
         coord.Y = x;
         SetConsoleCursorPosition(GetStdHandle( STD_OUTPUT_HANDLE ), coord );
     }
+    char RoomObject::GetChar() const { 
+        return this->Character; 
+    }
 }

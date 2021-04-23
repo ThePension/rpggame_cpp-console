@@ -24,7 +24,7 @@ namespace He_Arc::RPG
     void Inventory::Show(int y, int x){
         int x1 = x;
         int y1 = y;
-        for(const IItem * i : this->Content){
+        for(const IItem * i : this->Content) {
             GotoXY(y1, x1); x1++;
             cout << " - " << i->GetName() << endl;
         }

@@ -23,6 +23,8 @@ namespace He_Arc::RPG
             void Show(int x, int y);
             void GotoXY(int x, int y);
             // void DropItem(IItem * i);
+            int GetSize() const { return this->Size; }
+            std::list<IItem*> GetContent() { return this->Content; }
 
     };
 }
