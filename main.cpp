@@ -6,6 +6,7 @@
 */
 #include <iostream>
 #include <list>
+#include <iterator>
 #include <conio.h>
 #include <algorithm>
 #include <windows.h>
@@ -36,12 +37,36 @@ int main(int argc, char const *argv[])
     
     Room1.Display();
     
+    bool IsInventoryDisplayed = false;
+    GotoXY(25, 1);
+        cout << "Key help : h" << endl;
+
     while(true){
         char key;
-        GotoXY(25, 1);
-        cout << "Key help : h" << endl;
         key = _getwch();
         switch(key){
+            case '0':
+            case '1':
+            case '2':
+            case '3':
+            case '4':
+            case '5':
+            case '6':
+            case '7':
+            case '8':
+            case '9':
+                if(IsInventoryDisplayed && Room1.GetPlayer()->GetInventory().size() > key - '0'){
+                    IItem * i = Room1.GetPlayer()->GetInventoryItemAtIndex(key - '0');
+                    Room1.GetPlayer()->Interact(i);
+                    system("cls");
+                    Room1.Display();
+                    Room1.ShowPlayerInventory();
+                }else{
+                    system("cls");
+                    Room1.Display();
+                    IsInventoryDisplayed = false;
+                }
+                break;
             case 'q': // Exit the game
                 /*system("cls");
                 cout << "You're about to exit the game. Are you sure ? (y/n)" << endl;
@@ -55,21 +80,24 @@ int main(int argc, char const *argv[])
             case 'd':
                 Room1.Update(key);
                 Room1.Display();
+                IsInventoryDisplayed = false;
                 break;
             case '$': // Afficher les stats du joueur
                 Room1.ShowPlayerStats();
                 _getwch();
                 Room1.Display();
+                IsInventoryDisplayed = false;
                 break;
             case 'h': // Afficher de l'aide sur les commandes
                 Room1.KeyHelp();
                 _getwch();
                 Room1.Display();
+                IsInventoryDisplayed = false;
                 break;
             case 'i': // Afficher l'inventaire du joueur
-                Room1.ShowPlayerInventory();
-                _getwch();
                 Room1.Display();
+                Room1.ShowPlayerInventory();
+                IsInventoryDisplayed = true;
                 break;
             case 'f': // Intéragir avec l'objet aux alentours
                 int pPosX = Room1.GetPlayer()->GetX(); // Retourne les Y !
@@ -81,6 +109,7 @@ int main(int argc, char const *argv[])
                     Room1.Display(); // Rafraichir l'affichage
                     Room1.CheckAround(pPosY, pPosX);
                 }
+                IsInventoryDisplayed = false;
                 break;
         }
     }

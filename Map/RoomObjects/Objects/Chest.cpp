@@ -19,9 +19,14 @@ namespace He_Arc::RPG
     void Chest::Show(int x, int y) {
         int x1 = x;
         int y1 = y;
-        for(const IItem * i : this->Inventory) {
-            GotoXY(y1, x1); y1++;
-            cout << " - " << i->GetName() << endl;
+        if(this->Inventory.size() == 0){
+            GotoXY(y1, x1);
+            cout <<" Empty"<< endl;
+        }else{
+            for(const IItem * i : this->Inventory) {
+                GotoXY(y1, x1); y1++;
+                cout << " - " << i->GetName() << endl;
+            }   
         }
     }
     void Chest::DeleteInventory() {

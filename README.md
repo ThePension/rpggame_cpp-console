@@ -13,3 +13,9 @@ By pressing the `h` key, you open the key's help
 In the room, **C** character represents chest.
 If the go next to a chest, its content is displayed on the right
 By pressing the `f` key next to a chest, if you have enough places in your inventory, the chest content is added into your inventory.
+
+## Inventory
+In your inventory (10 items max), a number is displayed next to every item.
+By pressing one of these number while your inventory is open, you will interact with it :
+- Potion : You will drink the potion, and your HPs will increase
+- Weapon : Not implemented yet

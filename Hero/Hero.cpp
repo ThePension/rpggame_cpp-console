@@ -1,4 +1,5 @@
 #include "Hero.h"
+#include "../Items/Items/Potion.h"
 using namespace std;
 namespace He_Arc::RPG
 {
@@ -35,13 +36,19 @@ namespace He_Arc::RPG
         this->Dagger = _dagger;
     }
     void Hero::ShowInventory(int y, int x){
-        int x1 = x;
+        int x1 = x, j = 0;
         int y1 = y;
         GotoXY(1,25);
         cout << "Inventory : ("<<this->Inventory.size() << "/10)" << endl;
-        for(const IItem * i : this->Inventory) {
-            GotoXY(y1, x1); y1++;
-            cout << " - " << i->GetName() << endl;
+        if(this->Inventory.size() == 0){
+            GotoXY(y1, x1);
+            cout <<" Empty"<< endl;
+        }else{
+            for(const IItem * i : this->Inventory) {
+                GotoXY(y1, x1); y1++;
+                cout <<" "<< j << ". " << i->GetName() << endl;
+                j++;
+            }
         }
     }
                 
@@ -79,6 +86,18 @@ namespace He_Arc::RPG
             }
             RO->DeleteInventory();
         }
+    }
+    void Hero::Interact(IItem * i){
+        if(i->GetName().find("potion")){ // Si l'objet est une potion
+            Potion * p = (Potion *)i; // Implémenter du dynamic_cast pour pouvoir caster l'item en potion
+            this->HP += p->GetHealAmount();
+            this->Inventory.remove(p);
+            delete p;
+            p = nullptr;
+        }
+    }
+    IItem * Hero::GetInventoryItemAtIndex(int i){
+         return *std::next(this->Inventory.begin(), i);
     }
     void Hero::DeleteInventory() {
         while(!this->Inventory.empty()) this->Inventory.pop_front();

@@ -31,7 +31,9 @@ namespace He_Arc::RPG
         virtual void Show(int x, int y) = 0;
         virtual void Interact(const Hero &other) = 0;
         virtual void Interact(RoomObject * RO);
+        void Interact(IItem * i);
         std::list<IItem*> GetInventory() override;
+        IItem * GetInventoryItemAtIndex(int i);
         void DeleteInventory() override;
         void AddItems(const std::list<IItem*> _content);
         void AddItem(IItem * i);

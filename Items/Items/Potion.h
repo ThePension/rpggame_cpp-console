@@ -17,6 +17,7 @@ namespace He_Arc::RPG
             // std::string GetName() const { return this->Name; }
             std::string GetName() const override;
             std::string GetFeature() const override;
+            int GetHealAmount() { return this->HealAmount; }
     };
 }
 #endif

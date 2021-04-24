@@ -180,17 +180,17 @@ namespace He_Arc::RPG
     }
     // Fonction permettant de contrôler ce qu'il y autour du joueur
     RoomObject * Room::CheckAround(int x, int y){
-        int lineNb = 2;
+        int lineNb = 1;
         for(int i = x-1; i <= x+1; i++){
             for(int j = y-1; j <= y+1; j++){
                 switch(ROPattern[i][j]->GetChar()){
-                    case 'C':
-                        GotoXY(25,lineNb);
-                        cout << "Chest : ";
-                        lineNb++;
-                        ROPattern[i][j]->Show(25, lineNb);
-                        return ROPattern[i][j];
-                        break;
+                case 'C':
+                    GotoXY(25,lineNb);
+                    cout << "Chest : ";
+                    lineNb++;
+                    ROPattern[i][j]->Show(25, lineNb);
+                    return ROPattern[i][j];
+                    break;
                 }
             }
         }
