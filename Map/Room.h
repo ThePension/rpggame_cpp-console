@@ -29,8 +29,6 @@ namespace He_Arc::RPG
             void ShowPlayerInventory();
             void KeyHelp();
             Hero * GetPlayer() { return this->Player; }
-            int GetPlayerX() { return this->Player->GetX(); }
-            int GetPlayerY() { return this->Player->GetY(); }
     };
 }
 #endif
