@@ -35,12 +35,20 @@ int main(int argc, char const *argv[])
     Room Room1 = Room();
     
     Room1.Display();
+    
     while(true){
         char key;
         GotoXY(25, 1);
         cout << "Key help : h" << endl;
         key = _getwch();
         switch(key){
+            case 'q': // Exit the game
+                /*system("cls");
+                cout << "You're about to exit the game. Are you sure ? (y/n)" << endl;
+                std::string confirmation;
+                cin >> confirmation;
+                if(confirmation != "n")*/ exit(0);
+                break;
             case 'w': // Déplacement du joueur
             case 'a':
             case 's':
@@ -74,10 +82,6 @@ int main(int argc, char const *argv[])
                     Room1.CheckAround(pPosY, pPosX);
                 }
                 break;
-            /*case 'q':
-                cout << "Exit" << endl;
-                exit(0);
-                break;*/
         }
     }
     // _getwch();

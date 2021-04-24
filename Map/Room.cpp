@@ -95,8 +95,6 @@ namespace He_Arc::RPG
     void Room::ShowPlayerInventory(){
         system("cls");
         this->Display();
-        GotoXY(25,1);
-        cout << "Inventory :" << endl;
         this->Player->ShowInventory(2, 25);
     }
     void Room::ShowPlayerStats(){

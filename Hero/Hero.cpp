@@ -37,6 +37,8 @@ namespace He_Arc::RPG
     void Hero::ShowInventory(int y, int x){
         int x1 = x;
         int y1 = y;
+        GotoXY(1,25);
+        cout << "Inventory : ("<<this->Inventory.size() << "/10)" << endl;
         for(const IItem * i : this->Inventory) {
             GotoXY(y1, x1); y1++;
             cout << " - " << i->GetName() << endl;
