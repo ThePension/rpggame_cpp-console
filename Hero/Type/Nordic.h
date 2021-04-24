@@ -10,10 +10,9 @@ namespace He_Arc::RPG
     private:
         // Attributs
         int Stamina;
-        Sword Sword;
     public:
         // Constructors
-        Nordic(int x, int y, char charac, RPG::Sword _sword, int _strength, int _agility, int _intelligence, double _hp, std::string _name, RPG::Dagger * _dagger = nullptr);
+        Nordic(int x, int y, char charac, int _strength, int _agility, int _intelligence, double _hp, std::string _name);
         // Methods
         void Show(int x, int y) override;
         void Interact(const Hero &other) override;

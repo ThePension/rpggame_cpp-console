@@ -9,7 +9,7 @@ namespace He_Arc::RPG
     {
     public:
         // Constructors
-        Necromancer(int x, int y, char charac, RPG::Staff _staff, int _strength, int _agility, int _intelligence, double _hp, std::string _name, RPG::Dagger * _dagger = nullptr);
+        Necromancer(int x, int y, char charac, int _strength, int _agility, int _intelligence, double _hp, std::string _name);
         // Methods
         void Show(int x, int y) override;
         void RiseUndeads();

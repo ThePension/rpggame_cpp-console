@@ -7,6 +7,7 @@
 #include "../Hero/Hero.h"
 #include "../Hero/Type/Nordic.h"
 #include "../Weapons/Type/Sword.h"
+#include "../Weapons/Type/Staff.h"
 #include "../Items/Items/Potion.h"
 using namespace std;
 namespace He_Arc::RPG
@@ -14,23 +15,25 @@ namespace He_Arc::RPG
     // Constructors
     Room::Room() {
         // Hero
-        Dagger * PyroBarbareSword_dagger = new Dagger();
-        Sword PyroBarbareSword = Sword(5);
-        Nordic * PyroBarbare = new Nordic(2,3,'X',PyroBarbareSword, 20, 5, 15, 25, "PyroBarbare", PyroBarbareSword_dagger);
+        Nordic * PyroBarbare = new Nordic(2,3,'X', 20, 5, 15, 25, "PyroBarbare");
         this->Player = PyroBarbare;
         // Chest 1
         Potion * _potion = new Potion(5, "Small potion", false);
         Potion * _potion2 = new Potion(10, "Medium potion", false);
+        Sword * PyroBarbareSword = new Sword(5, "PyroBarbareSword");
         Chest * _chest = new Chest(9,3,'C');
         _chest->AddItem(_potion2);
         _chest->AddItem(_potion);
+        _chest->AddItem(PyroBarbareSword);
 
         // Chest 2
+        Staff * _GreekStaff = new Staff(10, "Greek Staff");
         Potion * _potion3 = new Potion(15, "Large potion", false);
         Potion * _potion4 = new Potion(10, "Medium potion", false);
         Chest * _chest2 = new Chest(1,8,'C');
         _chest2->AddItem(_potion3);
         _chest2->AddItem(_potion4);
+        _chest2->AddItem(_GreekStaff);
         
         // Création d'un tableau temporaire, contenant le pattern de la pièce
         RoomObject * _pattern[Heigth][Width] = {

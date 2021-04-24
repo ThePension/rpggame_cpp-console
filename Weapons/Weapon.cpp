@@ -3,7 +3,14 @@ using namespace std;
 namespace He_Arc::RPG
 {
     // Constructors
-    Weapon::Weapon() : Level(0), XP(0) {}
+    Weapon::Weapon() : IItem("no_name", false) {
+        this->Level = 0;
+        this->XP = 0;
+    }
+    Weapon::Weapon(std::string _name, bool _canBeStacked) : IItem(_name, _canBeStacked) {
+        this->Level = 0;
+        this->XP = 0;
+    }
     // Methods
     void Weapon::AddXP(){
         if(this->XP < 9){

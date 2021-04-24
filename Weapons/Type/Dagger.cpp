@@ -4,7 +4,7 @@ using namespace std;
 namespace He_Arc::RPG
 {
     // Constructors
-    Dagger::Dagger(){
+    Dagger::Dagger() : Weapon("Dagger", false) {
         this->Damage = 1;
     }
     // Methods

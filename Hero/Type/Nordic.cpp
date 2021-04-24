@@ -3,9 +3,8 @@ using namespace std;
 namespace He_Arc::RPG
 {
     // Constructors
-    Nordic::Nordic(int x, int y, char charac, RPG::Sword _sword, int _strength, int _agility, int _intelligence, double _hp, std::string _name, RPG::Dagger* _dagger) 
-    : Hero(x, y, charac, _strength, _agility, _intelligence, _hp, _name, _dagger){
-        this->Sword = _sword;
+    Nordic::Nordic(int x, int y, char charac, int _strength, int _agility, int _intelligence, double _hp, std::string _name) 
+    : Hero(x, y, charac, _strength, _agility, _intelligence, _hp, _name){
         this->Stamina = 100;
     }
     // Methods
@@ -25,7 +24,8 @@ namespace He_Arc::RPG
         cout << "intelligence : " << this->Intelligence << endl;  GotoXY(x, y); x++;
         cout << "HP : " << this->HP << endl;  GotoXY(x, y); x++;
         cout << "Stamina : " << this->Stamina << endl;  GotoXY(x, y); x++;
-        cout << "Weapons : " << endl;
+        cout << "Current weapon :" << endl; GotoXY(x, y); x++;
+        cout << " - " << this->CurrentWeapon->GetName() << " (lvl. " << this->CurrentWeapon->GetLevel() << ")" << endl; 
         /*this->Sword.Stats();  GotoXY(x++, y);
         this->Dagger->Stats();  GotoXY(x++, y);*/
     }

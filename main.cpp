@@ -61,7 +61,7 @@ int main(int argc, char const *argv[])
                     system("cls");
                     Room1.Display();
                     Room1.ShowPlayerInventory();
-                }else{
+                } else {
                     system("cls");
                     Room1.Display();
                     IsInventoryDisplayed = false;

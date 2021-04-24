@@ -3,10 +3,10 @@ using namespace std;
 namespace He_Arc::RPG
 {
     // Constructors
-    Sword::Sword(){
+    Sword::Sword() : Weapon("no_name", false) {
         this->Damage = 0;
     }
-    Sword::Sword(int Damage){
+    Sword::Sword(int Damage, std::string _name) : Weapon(_name, false) {
         this->Damage = Damage;
     }
     // Methods

@@ -14,6 +14,7 @@ namespace He_Arc::RPG
             Dagger();
             // Methods
             void Stats() override;
+            std::string GetName() const override { return "Dagger"; }
     };
 }
 #endif

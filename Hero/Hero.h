@@ -2,7 +2,7 @@
 #define HERO_H
 #include <iostream>
 // #include "../Inventory/Inventory.h"
-#include "../Weapons/Type/Dagger.h"
+#include "../Weapons/Weapon.h"
 #include "../Map/RoomObjects/RoomObject.h"
 
 namespace He_Arc::RPG
@@ -17,14 +17,13 @@ namespace He_Arc::RPG
         double HP;
         std::string Name;
         std::list<IItem*> Inventory;
+        Weapon * CurrentWeapon = nullptr;
         // Inventory * Inventory;
-        Dagger * Dagger = nullptr;
-
     public:
         // Constructors
         Hero();
         Hero(const Hero &);
-        Hero(int x, int y, char charac, int _strength, int _agility, int _intelligence, double _hp, std::string _name, RPG::Dagger * _dagger = nullptr);
+        Hero(int x, int y, char charac, int _strength, int _agility, int _intelligence, double _hp, std::string _name);
         // Destructors
         ~Hero();
         // Methods
@@ -44,7 +43,6 @@ namespace He_Arc::RPG
         int GetIntelligence() const { return Intelligence; }
         double GetHP() const { return HP; }
         std::string GetName() const { return Name; }
-        RPG::Dagger* GetDagger() const { return Dagger; }
         friend std::ostream& operator<<(std::ostream& os, const Hero & _Hero);
         Hero & operator=(const Hero &);
     };

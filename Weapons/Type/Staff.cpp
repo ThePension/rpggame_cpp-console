@@ -3,10 +3,10 @@ using namespace std;
 namespace He_Arc::RPG
 {
     // Constructors
-    Staff::Staff(){
+    Staff::Staff() : Weapon("no_name", false) {
         this->HealAmount = 0;
     }
-    Staff::Staff(int HealAmount){
+    Staff::Staff(int HealAmount, std::string _name) : Weapon(_name, false) {
         this->HealAmount = HealAmount;
     }
     // Methods

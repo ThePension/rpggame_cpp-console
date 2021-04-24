@@ -1,5 +1,6 @@
 #include "Hero.h"
 #include "../Items/Items/Potion.h"
+#include <windows.h>
 using namespace std;
 namespace He_Arc::RPG
 {
@@ -10,11 +11,8 @@ namespace He_Arc::RPG
         this->Intelligence = 0;
         this->HP = 0;
         this->Name = "no_name";
-        this->Dagger = nullptr;
     }
     Hero::~Hero() {
-        delete Dagger;
-        Dagger = nullptr;
         while(!this->Inventory.empty()) delete this->Inventory.front(), this->Inventory.pop_front();
     }
     Hero::Hero(const Hero & hero){
@@ -23,9 +21,8 @@ namespace He_Arc::RPG
         this->Intelligence = hero.Intelligence;
         this->HP = hero.HP;
         this->Name = hero.Name;
-        this->Dagger = hero.Dagger;
     }
-    Hero::Hero(int x, int y, char charac, int _strength, int _agility, int _intelligence, double _hp, std::string _name, RPG::Dagger* _dagger)
+    Hero::Hero(int x, int y, char charac, int _strength, int _agility, int _intelligence, double _hp, std::string _name)
                 : RoomObject(x, y, charac) // :Strength(_strength), Agility(_agility), Intelligence(_intelligence), HP(_hp), Name(_name), Dagger(_dagger) { }
     {
         this->Strength = _strength;
@@ -33,7 +30,6 @@ namespace He_Arc::RPG
         this->Intelligence = _intelligence;
         this->HP = _hp;
         this->Name = _name;
-        this->Dagger = _dagger;
     }
     void Hero::ShowInventory(int y, int x){
         int x1 = x, j = 0;
@@ -46,8 +42,27 @@ namespace He_Arc::RPG
         }else{
             for(const IItem * i : this->Inventory) {
                 GotoXY(y1, x1); y1++;
-                cout <<" "<< j << ". " << i->GetName() << endl;
-                j++;
+                if(i->GetFeature().find("Weapon") != -1){ // Si l'objet est une arme
+                    Weapon * w = (Weapon *)i;
+                    if(w == CurrentWeapon){ // Si l'arme est l'arme tenue dans les mains du joueur
+                        // Afficher l'arme en rouge
+                        HANDLE hstdin = GetStdHandle(STD_INPUT_HANDLE);
+                        HANDLE hstdout = GetStdHandle(STD_OUTPUT_HANDLE);
+                        SetConsoleTextAttribute(hstdout, 0x0C);
+                        cout <<" "<< j << ". " << i->GetName() << endl;
+                        SetConsoleTextAttribute(hstdout, 0x0F);
+                        FlushConsoleInputBuffer(hstdin);
+                        j++;
+                    }
+                    else{
+                         cout <<" "<< j << ". " << i->GetName() << endl;
+                        j++;
+                    }
+                }else{
+                    cout <<" "<< j << ". " << i->GetName() << endl;
+                    j++;
+                }
+                
             }
         }
     }
@@ -71,7 +86,6 @@ namespace He_Arc::RPG
             this->Intelligence = hero.Intelligence;
             this->HP = hero.HP;
             this->Name = hero.Name;
-            this->Dagger = hero.Dagger;
         }
         return *this;
     }
@@ -88,12 +102,17 @@ namespace He_Arc::RPG
         }
     }
     void Hero::Interact(IItem * i){
-        if(i->GetName().find("potion")){ // Si l'objet est une potion
+        if(i->GetName().find("potion") != -1){ // Si l'objet est une potion
             Potion * p = (Potion *)i; // Implémenter du dynamic_cast pour pouvoir caster l'item en potion
             this->HP += p->GetHealAmount();
             this->Inventory.remove(p);
             delete p;
             p = nullptr;
+        }else if(i->GetFeature().find("Weapon") != -1){ // Si l'objet est une arme
+            // if(CurrentWeapon != nullptr){ // Si le joueur tient une arme dans ses mains
+                Weapon * w = (Weapon *)i;
+                this->CurrentWeapon = w;
+            // }
         }
     }
     IItem * Hero::GetInventoryItemAtIndex(int i){
