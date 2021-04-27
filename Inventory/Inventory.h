@@ -9,23 +9,24 @@ namespace He_Arc::RPG
     {
         private:
             // Attributs
-            int Size;
+            int Size = 10;
             std::list<IItem*> Content;
         public:
             // Constructors
             Inventory();
-            Inventory(int _size);
             // Destructors
             ~Inventory();
             // Methods
             void AddItems(const std::list<IItem*> _content);
             void AddItem(IItem * i);
-            void Show(int x, int y);
+            // void Show(int x, int y);
             void GotoXY(int x, int y);
             // void DropItem(IItem * i);
             int GetSize() const { return this->Size; }
-            std::list<IItem*> GetContent() { return this->Content; }
-
+            std::list<IItem*> GetContent();
+            IItem * GetInventoryItemAtIndex(int i);
+            void Show(int x, int y);
+            void DeleteInventory();
     };
 }
 #endif

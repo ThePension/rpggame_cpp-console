@@ -22,18 +22,18 @@ namespace He_Arc::RPG
         Potion * _potion2 = new Potion(10, "Medium potion", false);
         Sword * PyroBarbareSword = new Sword(5, "PyroBarbareSword");
         Chest * _chest = new Chest(9,3,'C');
-        _chest->AddItem(_potion2);
-        _chest->AddItem(_potion);
-        _chest->AddItem(PyroBarbareSword);
+        _chest->GetInventory().AddItem(_potion2);
+        _chest->GetInventory().AddItem(_potion);
+        _chest->GetInventory().AddItem(PyroBarbareSword);
 
         // Chest 2
         Staff * _GreekStaff = new Staff(10, "Greek Staff");
         Potion * _potion3 = new Potion(15, "Large potion", false);
         Potion * _potion4 = new Potion(10, "Medium potion", false);
         Chest * _chest2 = new Chest(1,8,'C');
-        _chest2->AddItem(_potion3);
-        _chest2->AddItem(_potion4);
-        _chest2->AddItem(_GreekStaff);
+        _chest2->GetInventory().AddItem(_potion3);
+        _chest2->GetInventory().AddItem(_potion4);
+        _chest2->GetInventory().AddItem(_GreekStaff);
         
         // Création d'un tableau temporaire, contenant le pattern de la pièce
         RoomObject * _pattern[Heigth][Width] = {
@@ -191,7 +191,7 @@ namespace He_Arc::RPG
                     GotoXY(25,lineNb);
                     cout << "Chest : ";
                     lineNb++;
-                    ROPattern[i][j]->Show(25, lineNb);
+                    ROPattern[i][j]->GetInventory().Show(lineNb, 25);
                     return ROPattern[i][j];
                     break;
                 }

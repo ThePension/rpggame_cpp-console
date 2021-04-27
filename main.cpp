@@ -15,6 +15,7 @@
 #include "Hero/Type/Necromancer.h"
 #include "Weapons/Type/Dagger.h"
 #include "Weapons/Type/Staff.h"
+#include "Inventory/Inventory.h"
 #include "Map/Room.h"
 using namespace std;
 using namespace He_Arc::RPG;
@@ -26,7 +27,7 @@ void GotoXY( int x, int y)
    SetConsoleCursorPosition( GetStdHandle( STD_OUTPUT_HANDLE ), coord );
 }
   
-int main(int argc, char const *argv[])
+int main(int argc, char const *argv[]) 
 {
     // Resize console windows
     HWND console = GetConsoleWindow();
@@ -55,8 +56,8 @@ int main(int argc, char const *argv[])
             case '7':
             case '8':
             case '9':
-                if(IsInventoryDisplayed && Room1.GetPlayer()->GetInventory().size() > key - '0'){
-                    IItem * i = Room1.GetPlayer()->GetInventoryItemAtIndex(key - '0');
+                if(IsInventoryDisplayed && Room1.GetPlayer()->GetInventory().GetContent().size() > key - '0'){
+                    IItem * i = Room1.GetPlayer()->GetInventory().GetInventoryItemAtIndex(key - '0');
                     Room1.GetPlayer()->Interact(i);
                     system("cls");
                     Room1.Display();
@@ -83,6 +84,8 @@ int main(int argc, char const *argv[])
                 IsInventoryDisplayed = false;
                 break;
             case '$': // Afficher les stats du joueur
+                system("cls");
+                Room1.Display();
                 Room1.ShowPlayerStats();
                 _getwch();
                 Room1.Display();
@@ -95,6 +98,7 @@ int main(int argc, char const *argv[])
                 IsInventoryDisplayed = false;
                 break;
             case 'i': // Afficher l'inventaire du joueur
+                system("cls");
                 Room1.Display();
                 Room1.ShowPlayerInventory();
                 IsInventoryDisplayed = true;

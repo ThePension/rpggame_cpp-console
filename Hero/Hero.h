@@ -1,7 +1,7 @@
 #ifndef HERO_H
 #define HERO_H
 #include <iostream>
-// #include "../Inventory/Inventory.h"
+#include "../Inventory/Inventory.h"
 #include "../Weapons/Weapon.h"
 #include "../Map/RoomObjects/RoomObject.h"
 
@@ -16,7 +16,7 @@ namespace He_Arc::RPG
         int Intelligence;
         double HP;
         std::string Name;
-        std::list<IItem*> Inventory;
+        Inventory Inventory;
         Weapon * CurrentWeapon = nullptr;
         // Inventory * Inventory;
     public:
@@ -31,11 +31,8 @@ namespace He_Arc::RPG
         virtual void Interact(const Hero &other) = 0;
         virtual void Interact(RoomObject * RO);
         void Interact(IItem * i);
-        std::list<IItem*> GetInventory() override;
-        IItem * GetInventoryItemAtIndex(int i);
-        void DeleteInventory() override;
-        void AddItems(const std::list<IItem*> _content);
-        void AddItem(IItem * i);
+        std::list<IItem*> GetInventoryContent() override;
+        RPG::Inventory & GetInventory() override;
         void ShowInventory(int x, int y);
         // Getters
         int GetAgility() const {return Agility; }

@@ -33,5 +33,7 @@ By pressing one of these number while your inventory is open, you will interact 
 - Potion : You will drink the potion, and your HPs will increase
 - Weapon : The weapon is then the current weapon (the weapon held by the hero), displayed in red in the inventory (and in the player stats).
 
+![alt text](Docs/Images/CurrentWeapon.PNG)
+
 If you press another key that `i` or a number (between 0 and the last item's number in your inventory), the inventory will close.
 

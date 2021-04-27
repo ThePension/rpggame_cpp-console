@@ -17,11 +17,14 @@ namespace He_Arc::RPG
             // Methods
             void Show(int x, int y) override {}
             void Interact(RoomObject * RO) override {}
-            std::list<IItem*> GetInventory() override {
-                std::list<IItem*> lst; 
-                return lst; 
+            Inventory & GetInventory() override {
+                Inventory  i = Inventory(); 
+                return i; 
             }
-            void DeleteInventory() override {};
+            std::list<IItem*> GetInventoryContent() override {
+                std::list<IItem*> lst;
+                return lst;
+            }
     };
 }
 #endif
