@@ -93,12 +93,12 @@ namespace He_Arc::RPG
         char c = RO->GetChar();
         // std::list<IItem*> _ROInvent = RO->GetInventory();
         if(c == 'C'){ // Si l'objet est un coffre
-            if(RO->GetInventory().GetContent().size() <= 10 - this->Inventory.GetContent().size()){ // Si l'inventaire n'est pas plein
-                this->Inventory.AddItems(RO->GetInventory().GetContent());
+            if(RO->GetInventory()->GetContent().size() <= 10 - this->Inventory.GetContent().size()){ // Si l'inventaire n'est pas plein
+                this->Inventory.AddItems(RO->GetInventory()->GetContent());
             }else{
                 cout << "Not enough space" << endl;
             }
-            RO->GetInventory().DeleteInventory();
+            RO->GetInventory()->DeleteInventory();
         }
     }
     void Hero::Interact(IItem * i){
@@ -118,8 +118,8 @@ namespace He_Arc::RPG
     std::list<IItem*> Hero::GetInventoryContent() {
         return this->Inventory.GetContent();
     }
-    Inventory & Hero::GetInventory() {
-        return this->Inventory;
+    Inventory * Hero::GetInventory() {
+        return &this->Inventory;
     }
     /*void Hero::Interact(const Hero &other)
     {

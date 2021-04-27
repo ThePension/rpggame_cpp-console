@@ -27,7 +27,7 @@ namespace He_Arc::RPG
             virtual void Show(int x, int y) = 0;
             virtual void Interact(RoomObject * RO) = 0;
             virtual  std::list<IItem*> GetInventoryContent() = 0;
-            virtual Inventory & GetInventory() = 0;
+            virtual Inventory * GetInventory() = 0;
             // virtual void Interact() = 0;
     };
 }

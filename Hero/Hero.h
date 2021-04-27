@@ -32,7 +32,7 @@ namespace He_Arc::RPG
         virtual void Interact(RoomObject * RO);
         void Interact(IItem * i);
         std::list<IItem*> GetInventoryContent() override;
-        RPG::Inventory & GetInventory() override;
+        RPG::Inventory * GetInventory() override;
         void ShowInventory(int x, int y);
         // Getters
         int GetAgility() const {return Agility; }

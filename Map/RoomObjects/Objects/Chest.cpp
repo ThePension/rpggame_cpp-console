@@ -20,8 +20,8 @@ namespace He_Arc::RPG
             }   
         }
     }
-    Inventory & Chest::GetInventory() {
-        return this->Inventory;
+    Inventory * Chest::GetInventory() {
+        return &this->Inventory;
     }
     std::list<IItem*> Chest::GetInventoryContent() {
         return this->Inventory.GetContent();

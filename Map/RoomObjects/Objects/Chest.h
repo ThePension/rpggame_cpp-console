@@ -24,7 +24,7 @@ namespace He_Arc::RPG
             void Show(int x, int y) override;
             void Interact(RoomObject * i) override {}
             std::list<IItem*> GetInventoryContent() override;
-            RPG::Inventory & GetInventory() override;
+            RPG::Inventory * GetInventory() override;
             /*int GetSize(){
                 return this->Inventory.size();
             }*/

@@ -22,30 +22,30 @@ namespace He_Arc::RPG
         Potion * _potion2 = new Potion(10, "Medium potion", false);
         Sword * PyroBarbareSword = new Sword(5, "PyroBarbareSword");
         Chest * _chest = new Chest(9,3,'C');
-        _chest->GetInventory().AddItem(_potion2);
-        _chest->GetInventory().AddItem(_potion);
-        _chest->GetInventory().AddItem(PyroBarbareSword);
+        _chest->GetInventory()->AddItem(_potion2);
+        _chest->GetInventory()->AddItem(_potion);
+        _chest->GetInventory()->AddItem(PyroBarbareSword);
 
         // Chest 2
         Staff * _GreekStaff = new Staff(10, "Greek Staff");
         Potion * _potion3 = new Potion(15, "Large potion", false);
         Potion * _potion4 = new Potion(10, "Medium potion", false);
         Chest * _chest2 = new Chest(1,8,'C');
-        _chest2->GetInventory().AddItem(_potion3);
-        _chest2->GetInventory().AddItem(_potion4);
-        _chest2->GetInventory().AddItem(_GreekStaff);
+        _chest2->GetInventory()->AddItem(_potion3);
+        _chest2->GetInventory()->AddItem(_potion4);
+        _chest2->GetInventory()->AddItem(_GreekStaff);
         
         // Création d'un tableau temporaire, contenant le pattern de la pièce
         RoomObject * _pattern[Heigth][Width] = {
             { new Wall(0,0,' '), new Wall(1,0,'_'), new Wall(2,0,'_'), new Wall(3,0,'_'), new Wall(4,0,'_'), new Wall(5,0,'_'), new Wall(6,0,'_'), new Wall(7,0,'_'), new Wall(8,0,'_'), new Wall(9,0,'_'), new Wall(10,0,'_'), new Wall(11,0,'_'), new Wall(12,0,'_'), new Wall(13,0,'_'), new Wall(14,0,'_'), new Wall(15,0,'_'), new Wall(16,0,'_'), new Wall(17,0,'_'), new Wall(18,0,'_'), new Wall(19,0,' ')},
             { new Wall(0,1,'|'), new Wall(1,1,' '), new Wall(2,1,' '), new Wall(3,1,' '), new Wall(4,1,' '), new Wall(5,1,' '), new Wall(6,1,' '), new Wall(7,1,' '), new Wall(8,1,' '), new Wall(9,1,' '), new Wall(10,1,' '), new Wall(11,1,' '), new Wall(12,1,' '), new Wall(13,1,' '), new Wall(14,1,' '), new Wall(15,1,' '), new Wall(16,1,' '), new Wall(17,1,' '), new Wall(18,1,' '), new Wall(19,1,'|')},
             { new Wall(0,2,'|'), new Wall(1,2,' '), new Wall(2,2,' '), new Wall(3,2,' '), new Wall(4,2,' '), new Wall(5,2,' '), new Wall(6,2,' '), new Wall(7,2,' '), new Wall(8,2,' '), new Wall(9,2,' '), new Wall(10,2,' '), new Wall(11,2,' '), new Wall(12,2,' '), new Wall(13,2,' '), new Wall(14,2,' '), new Wall(15,2,' '), new Wall(16,2,' '), new Wall(17,2,' '), new Wall(18,2,' '), new Wall(19,2,'|')},
-            { new Wall(0,3,'|'), new Wall(1,3,' '), PyroBarbare  , new Wall(3,3,' '), new Wall(4,3,' '), new Wall(5,3,' '), new Wall(6,3,' '), new Wall(7,3,' '), new Wall(8,3,' '), _chest, new Wall(10,3,' '), new Wall(11,3,' '), new Wall(12,3,' '), new Wall(13,3,' '), new Wall(14,3,' '), new Wall(15,3,' '), new Wall(16,3,' '), new Wall(17,3,' '), new Wall(18,3,' '), new Wall(19,3,'|')},
-            { new Wall(0,4,'|'), new Wall(1,4,' '), new Wall(2,4,' '), new Wall(3,4,' '), new Wall(4,4,' '), new Wall(5,4,' '), new Wall(6,4,' '), new Wall(7,4,' '), new Wall(8,4,' '), new Wall(9,4,' '), new Wall(10,4,' '), new Wall(11,4,' '), new Wall(12,4,' '), new Wall(13,4,' '), new Wall(14,4,' '), new Wall(15,4,' '), new Wall(16,4,' '), new Wall(17,4,' '), new Wall(18,4,' '), new Wall(19,4,'|')},
+            { new Wall(0,3,'|'), new Wall(1,3,' '), PyroBarbare  ,     new Wall(3,3,' '), new Wall(4,3,' '), new Wall(5,3,' '), new Wall(6,3,' '), new Wall(7,3,' '), new Wall(8,3,' '), _chest, new Wall(10,3,' '), new Wall(11,3,' '), new Wall(12,3,' '), new Wall(13,3,' '), new Wall(14,3,' '), new Wall(15,3,' '), new Wall(16,3,' '), new Wall(17,3,' '), new Wall(18,3,' '), new Wall(19,3,'|')},
+            { new Wall(0,4,'|'), new Wall(1,4,'-'), new Wall(2,4,'-'), new Wall(3,4,'-'), new Wall(4,4,'-'), new Wall(5,4,'-'), new Wall(6,4,' '), new Wall(7,4,' '), new Wall(8,4,' '), new Wall(9,4,' '), new Wall(10,4,' '), new Wall(11,4,' '), new Wall(12,4,' '), new Wall(13,4,' '), new Wall(14,4,' '), new Wall(15,4,' '), new Wall(16,4,' '), new Wall(17,4,' '), new Wall(18,4,' '), new Wall(19,4,'|')},
             { new Wall(0,5,'|'), new Wall(1,5,' '), new Wall(2,5,' '), new Wall(3,5,' '), new Wall(4,5,' '), new Wall(5,5,' '), new Wall(6,5,' '), new Wall(7,5,' '), new Wall(8,5,' '), new Wall(9,5,' '), new Wall(10,5,' '), new Wall(11,5,' '), new Wall(12,5,' '), new Wall(13,5,' '), new Wall(14,5,' '), new Wall(15,5,' '), new Wall(16,5,' '), new Wall(17,5,' '), new Wall(18,5,' '), new Wall(19,5,'|')},
-            { new Wall(0,6,'|'), new Wall(1,6,' '), new Wall(2,6,' '), new Wall(3,6,' '), new Wall(4,6,' '), new Wall(5,6,' '), new Wall(6,6,' '), new Wall(7,6,' '), new Wall(8,6,' '), new Wall(9,6,' '), new Wall(10,6,' '), new Wall(11,6,' '), new Wall(12,6,' '), new Wall(13,6,' '), new Wall(14,6,' '), new Wall(15,6,' '), new Wall(16,6,' '), new Wall(17,6,' '), new Wall(18,6,' '), new Wall(19,6,'|')},
-            { new Wall(0,7,'|'), new Wall(1,7,' '), new Wall(2,7,' '), new Wall(3,7,' '), new Wall(4,7,' '), new Wall(5,7,' '), new Wall(6,7,' '), new Wall(7,7,' '), new Wall(8,7,' '), new Wall(9,7,' '), new Wall(10,7,' '), new Wall(11,7,' '), new Wall(12,7,' '), new Wall(13,7,' '), new Wall(14,7,' '), new Wall(15,7,' '), new Wall(16,7,' '), new Wall(17,7,' '), new Wall(18,7,' '), new Wall(19,7,'|')},
-            { new Wall(0,8,'|'), _chest2, new Wall(2,8,' '), new Wall(3,8,' '), new Wall(4,8,' '), new Wall(5,8,' '), new Wall(6,8,' '), new Wall(7,8,' '), new Wall(8,8,' '), new Wall(9,8,' '), new Wall(10,8,' '), new Wall(11,8,' '), new Wall(12,8,' '), new Wall(13,8,' '), new Wall(14,8,' '), new Wall(15,8,' '), new Wall(16,8,' '), new Wall(17,8,' '), new Wall(18,8,' '), new Wall(19,8,'|')},
+            { new Wall(0,6,'|'), new Wall(1,6,' '), new Wall(2,6,' '), new Wall(3,6,' '), new Wall(4,6,' '), new Wall(5,6,'|'), new Wall(6,6,' '), new Wall(7,6,' '), new Wall(8,6,' '), new Wall(9,6,' '), new Wall(10,6,' '), new Wall(11,6,' '), new Wall(12,6,' '), new Wall(13,6,' '), new Wall(14,6,' '), new Wall(15,6,' '), new Wall(16,6,' '), new Wall(17,6,' '), new Wall(18,6,' '), new Wall(19,6,'|')},
+            { new Wall(0,7,'|'), new Wall(1,7,' '), new Wall(2,7,' '), new Wall(3,7,' '), new Wall(4,7,' '), new Wall(5,7,'|'), new Wall(6,7,' '), new Wall(7,7,' '), new Wall(8,7,' '), new Wall(9,7,' '), new Wall(10,7,' '), new Wall(11,7,' '), new Wall(12,7,' '), new Wall(13,7,' '), new Wall(14,7,' '), new Wall(15,7,' '), new Wall(16,7,' '), new Wall(17,7,' '), new Wall(18,7,' '), new Wall(19,7,'|')},
+            { new Wall(0,8,'|'), _chest2,           new Wall(2,8,' '), new Wall(3,8,' '), new Wall(4,8,' '), new Wall(5,8,'|'), new Wall(6,8,' '), new Wall(7,8,' '), new Wall(8,8,' '), new Wall(9,8,' '), new Wall(10,8,' '), new Wall(11,8,' '), new Wall(12,8,' '), new Wall(13,8,' '), new Wall(14,8,' '), new Wall(15,8,' '), new Wall(16,8,' '), new Wall(17,8,' '), new Wall(18,8,' '), new Wall(19,8,'|')},
             {new Wall(0,9,'\\'), new Wall(1,9,'_'), new Wall(2,9,'_'), new Wall(3,9,'_'), new Wall(4,9,'_'), new Wall(5,9,'_'), new Wall(6,9,'_'), new Wall(7,9,'_'), new Wall(8,9,'_'), new Wall(9,9,'_'), new Wall(10,9,'_'), new Wall(11,9,'_'), new Wall(12,9,'_'), new Wall(13,9,'_'), new Wall(14,9,'_'), new Wall(15,9,'_'), new Wall(16,9,'_'), new Wall(17,9,'_'), new Wall(18,9,'_'), new Wall(19,9,'/')},
         };
 
@@ -191,7 +191,7 @@ namespace He_Arc::RPG
                     GotoXY(25,lineNb);
                     cout << "Chest : ";
                     lineNb++;
-                    ROPattern[i][j]->GetInventory().Show(lineNb, 25);
+                    ROPattern[i][j]->GetInventory()->Show(lineNb, 25);
                     return ROPattern[i][j];
                     break;
                 }

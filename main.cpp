@@ -56,8 +56,8 @@ int main(int argc, char const *argv[])
             case '7':
             case '8':
             case '9':
-                if(IsInventoryDisplayed && Room1.GetPlayer()->GetInventory().GetContent().size() > key - '0'){
-                    IItem * i = Room1.GetPlayer()->GetInventory().GetInventoryItemAtIndex(key - '0');
+                if(IsInventoryDisplayed && Room1.GetPlayer()->GetInventory()->GetContent().size() > key - '0'){
+                    IItem * i = Room1.GetPlayer()->GetInventory()->GetInventoryItemAtIndex(key - '0');
                     Room1.GetPlayer()->Interact(i);
                     system("cls");
                     Room1.Display();
