@@ -3,7 +3,7 @@ using namespace std;
 namespace He_Arc::RPG
 {
     // Constructors
-    Gold::Gold(int _GoldAmount) : IItem("Gold", false) {
+    Gold::Gold(int _GoldAmount) : IItem("Gold", 1, false) {
         this->GoldAmount = _GoldAmount;
     }
         

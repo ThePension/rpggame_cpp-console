@@ -6,7 +6,7 @@ namespace He_Arc::RPG
     Sword::Sword() : Weapon("no_name", false) {
         this->Damage = 0;
     }
-    Sword::Sword(int Damage, std::string _name) : Weapon(_name, false) {
+    Sword::Sword(int Damage, int _price, std::string _name) : Weapon(_name, _price, false) {
         this->Damage = Damage;
     }
     // Methods

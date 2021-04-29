@@ -45,9 +45,11 @@ int main(int argc, char const *argv[])
     cout << "Key help : h" << endl;
     int InventoryIndex = 0;
     while(true){
-        if(GetAsyncKeyState(0x48)){ // H - Afficher l'aide pour les touches
-            Room1.KeyHelp();
-        }else if(GetAsyncKeyState(0x57)){ // W - Déplacement vers le haut
+        #pragma region Déplacements
+        if(GetAsyncKeyState(0x57)){ // W - Déplacement vers le haut
+            Room1.Update('w');
+            Room1.Display();
+        } else if(GetAsyncKeyState(0x57)){ // W - Déplacement vers le haut
             Room1.Update('w');
             Room1.Display();
         } else if (GetAsyncKeyState(0x41)){ // A - Déplacement vers la gauche
@@ -63,7 +65,10 @@ int main(int argc, char const *argv[])
             system("cls");
             Room1.Display();
             Room1.GetPlayer()->Show(0, 25);
-        } else if(GetAsyncKeyState(VK_TAB)){ // TAB - Afficher l'inventaire du joueur
+        } 
+        #pragma endregion comment
+        #pragma region Inventaire joueur
+        else if(GetAsyncKeyState(VK_TAB)){ // TAB - Afficher l'inventaire du joueur
             InventoryIndex = 0;
             bool NoQuitInventory = true;
             system("cls");
@@ -109,6 +114,8 @@ int main(int argc, char const *argv[])
                 }
             } while(NoQuitInventory);
         } // Fin de l'inventaire
+        #pragma endregion
+        #pragma region Intéractions avec la carte
         else if(GetAsyncKeyState(0x46)){ // F - Intéraction avec les objets dans la carte
             int y = Room1.GetPlayer()->GetX();
             int x = Room1.GetPlayer()->GetY();
@@ -162,7 +169,9 @@ int main(int argc, char const *argv[])
                     }
                 } while(NoQuitInventory);
             }
+            // else if(ro != nullptr && typeid(*ro).name() == typeid(Chest).name()) // Si l'objet est un marchant
         }
+        #pragma endregion
         system("pause>nul");
     }
     return 0;

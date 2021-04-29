@@ -12,7 +12,7 @@ namespace He_Arc::RPG
         public:
             // Constructors
             Sword();
-            Sword(int Damage, std::string _name);
+            Sword(int Damage, int _price, std::string _name);
             // Methods
             void Stats() override;
             int GetDamage() const;

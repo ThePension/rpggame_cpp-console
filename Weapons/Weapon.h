@@ -13,7 +13,7 @@ namespace He_Arc::RPG
         public:
             // Constructors
             Weapon();
-            Weapon(std::string _name, bool _canBeStacked = false);
+            Weapon(std::string _name, int _price, bool _canBeStacked = false);
             // Methods
             virtual void Stats() = 0;
             std::string GetFeature() const override { return "Weapon"; }

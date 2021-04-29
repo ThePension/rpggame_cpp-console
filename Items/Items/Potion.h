@@ -12,7 +12,7 @@ namespace He_Arc::RPG
         public:
             // Constructors
             // Potion() : HealAmount(5) {}
-            Potion(int _healAmout, std::string _name, bool _canBeStacked = false);
+            Potion(int _healAmout, int _price, std::string _name, bool _canBeStacked = false);
             // Methods
             // std::string GetName() const { return this->Name; }
             std::string GetName() const override;

@@ -12,7 +12,7 @@ namespace He_Arc::RPG
         public:
             // Constructors
             Staff();
-            Staff(int HealAmount, std::string _name);
+            Staff(int HealAmount, int _price, std::string _name);
             // Methods
             void Stats() override;
             int GetHealAmount() const;

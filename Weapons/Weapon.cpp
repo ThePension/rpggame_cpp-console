@@ -7,7 +7,7 @@ namespace He_Arc::RPG
         this->Level = 0;
         this->XP = 0;
     }
-    Weapon::Weapon(std::string _name, bool _canBeStacked) : IItem(_name, _canBeStacked) {
+    Weapon::Weapon(std::string _name, int _price, bool _canBeStacked) : IItem(_name, _price, _canBeStacked) {
         this->Level = 0;
         this->XP = 0;
     }

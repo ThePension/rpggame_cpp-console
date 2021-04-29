@@ -81,16 +81,14 @@ namespace He_Arc::RPG
     }
     void Hero::Interact(IItem * i){
         if(i->GetName().find("potion") != -1){ // Si l'objet est une potion
-            Potion * p = (Potion *)i; // Implémenter du dynamic_cast pour pouvoir caster l'item en potion
+            Potion * p = (Potion *)i; // Utiliser du dynamic_cast pour pouvoir caster l'item en potion
             this->HP += p->GetHealAmount();
             this->Inventory.GetContent().remove(p);
             delete p;
             p = nullptr;
         }else if(i->GetFeature().find("Weapon") != -1){ // Si l'objet est une arme
-            // if(CurrentWeapon != nullptr){ // Si le joueur tient une arme dans ses mains
-                Weapon * w = (Weapon *)i;
-                this->CurrentWeapon = w;
-            // }
+            Weapon * w = (Weapon *)i;
+            this->CurrentWeapon = w;
         }
     }
     std::list<IItem*> Hero::GetInventoryContent() {
@@ -99,20 +97,6 @@ namespace He_Arc::RPG
     Inventory * Hero::GetInventory() {
         return &this->Inventory;
     }
-    /*void Hero::Interact(const Hero &other)
-    {
-        cout << "Hello valiant " << other.Name << " !" << " I'm " << this->Name << " !" << endl;
-    }*/
-    /*void Hero::Show()
-    {
-        cout << "=================" << endl;
-        cout << "HERO : " << this->Name << endl;
-        cout << "=================" << endl;
-        cout << "strength : " << this->Strength << endl;
-        cout << "agility : " << this->Agility << endl;
-        cout << "intelligence : " << this->Intelligence << endl;
-        cout << "HP : " << this->HP << endl;
-    }*/
     void Hero::AddGold(int Gold){
         this->GoldAmount += Gold;
     }

@@ -6,7 +6,7 @@ namespace He_Arc::RPG
     Staff::Staff() : Weapon("no_name", false) {
         this->HealAmount = 0;
     }
-    Staff::Staff(int HealAmount, std::string _name) : Weapon(_name, false) {
+    Staff::Staff(int HealAmount, int _price, std::string _name) : Weapon(_name, _price, false) {
         this->HealAmount = HealAmount;
     }
     // Methods
