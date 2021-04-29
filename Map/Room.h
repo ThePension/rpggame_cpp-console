@@ -26,7 +26,6 @@ namespace He_Arc::RPG
             RoomObject * CheckAround(int x, int y);
             void GotoXY(int x, int y);
             void ShowPlayerStats();
-            void ShowPlayerInventory();
             void KeyHelp();
             Hero * GetPlayer() { return this->Player; }
     };

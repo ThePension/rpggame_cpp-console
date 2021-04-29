@@ -31,41 +31,6 @@ namespace He_Arc::RPG
         this->HP = _hp;
         this->Name = _name;
     }
-    void Hero::ShowInventory(int y, int x){
-        int x1 = x, j = 0;
-        int y1 = y;
-        GotoXY(1,25);
-        cout << "Inventory : ("<<this->Inventory.GetContent().size() << "/10)" << endl;
-        if(this->Inventory.GetContent().size() == 0){
-            GotoXY(y1, x1);
-            cout <<" Empty"<< endl;
-        }else{
-            for(const IItem * i : this->Inventory.GetContent()) {
-                GotoXY(y1, x1); y1++;
-                if(i->GetFeature().find("Weapon") != -1){ // Si l'objet est une arme
-                    Weapon * w = (Weapon *)i;
-                    if(w == CurrentWeapon){ // Si l'arme est l'arme tenue dans les mains du joueur
-                        // Afficher l'arme en rouge
-                        HANDLE hstdin = GetStdHandle(STD_INPUT_HANDLE);
-                        HANDLE hstdout = GetStdHandle(STD_OUTPUT_HANDLE);
-                        SetConsoleTextAttribute(hstdout, 0x0C);
-                        cout <<" "<< j << ". " << i->GetName() << endl;
-                        SetConsoleTextAttribute(hstdout, 0x0F);
-                        FlushConsoleInputBuffer(hstdin);
-                        j++;
-                    }
-                    else{
-                         cout <<" "<< j << ". " << i->GetName() << endl;
-                        j++;
-                    }
-                }else{
-                    cout <<" "<< j << ". " << i->GetName() << endl;
-                    j++;
-                }
-                
-            }
-        }
-    }
                 
     // Methods
     ostream& operator<<(ostream& os, const Hero & _Hero)

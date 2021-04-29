@@ -17,6 +17,7 @@
 #include "Weapons/Type/Staff.h"
 #include "Inventory/Inventory.h"
 #include "Map/Room.h"
+#include "Map/RoomObjects/Objects/Chest.h"
 using namespace std;
 using namespace He_Arc::RPG;
 void GotoXY( int x, int y)
@@ -40,84 +41,102 @@ int main(int argc, char const *argv[])
     
     bool IsInventoryDisplayed = false;
     GotoXY(25, 1);
-        cout << "Key help : h" << endl;
-
+    cout << "Key help : h" << endl;
+    int InventoryIndex = 0;
     while(true){
-        char key;
-        key = _getwch();
-        switch(key){
-            case '0':
-            case '1':
-            case '2':
-            case '3':
-            case '4':
-            case '5':
-            case '6':
-            case '7':
-            case '8':
-            case '9':
-                if(IsInventoryDisplayed && Room1.GetPlayer()->GetInventory()->GetContent().size() > key - '0'){
-                    IItem * i = Room1.GetPlayer()->GetInventory()->GetInventoryItemAtIndex(key - '0');
+        if(GetAsyncKeyState(0x48)){ // H - Afficher l'aide pour les touches
+            Room1.KeyHelp();
+        }else if(GetAsyncKeyState(0x57)){ // W - Déplacement vers le haut
+            Room1.Update('w');
+            Room1.Display();
+        } else if (GetAsyncKeyState(0x41)){ // A - Déplacement vers la gauche
+            Room1.Update('a');
+            Room1.Display();
+        } else if (GetAsyncKeyState(0x53)){ // S - Déplacement vers le bas
+            Room1.Update('s');
+            Room1.Display();
+        } else if (GetAsyncKeyState(0x44)){ // D - Déplacement vers la droite
+            Room1.Update('d');
+            Room1.Display();
+        } else if(GetAsyncKeyState(VK_TAB)){ // TAB - Afficher l'inventaire du joueur
+            InventoryIndex = 0;
+            bool NoQuitInventory = true;
+            system("cls");
+            Room1.Display();
+            Room1.GetPlayer()->GetInventory()->Show("Your inventory", InventoryIndex, 2, 25);
+            do { // Navigation dans l'inventaire
+                system("pause>nul");
+                if(GetAsyncKeyState(0x57)){ // W - Déplacement vers le haut
+                    if (InventoryIndex == 0) InventoryIndex = Room1.GetPlayer()->GetInventory()->GetContent().size() - 1;
+                    else InventoryIndex--;
+                    system("cls");
+                    Room1.Display();
+                    Room1.GetPlayer()->GetInventory()->Show("Your inventory", InventoryIndex, 2, 25);
+                }else if(GetAsyncKeyState(0x53)){ // S - Déplacement vers le bas
+                    if (InventoryIndex == Room1.GetPlayer()->GetInventory()->GetContent().size() - 1) InventoryIndex=0;
+                    else InventoryIndex++;
+                    system("cls");
+                    Room1.Display();
+                    Room1.GetPlayer()->GetInventory()->Show("Your inventory", InventoryIndex, 2, 25);
+                }else if(GetAsyncKeyState(0x46)){ // F - Interact
+                    IItem * i = Room1.GetPlayer()->GetInventory()->GetInventoryItemAtIndex(InventoryIndex);
                     Room1.GetPlayer()->Interact(i);
                     system("cls");
                     Room1.Display();
-                    Room1.ShowPlayerInventory();
-                } else {
+                    Room1.GetPlayer()->GetInventory()->Show("Your inventory", InventoryIndex, 2, 25);
+                }else if(GetAsyncKeyState(VK_TAB)){ // TAB - Quitter l'inventaire
+                    NoQuitInventory = false;
                     system("cls");
                     Room1.Display();
-                    IsInventoryDisplayed = false;
                 }
-                break;
-            case 'q': // Exit the game
-                /*system("cls");
-                cout << "You're about to exit the game. Are you sure ? (y/n)" << endl;
-                std::string confirmation;
-                cin >> confirmation;
-                if(confirmation != "n")*/ exit(0);
-                break;
-            case 'w': // Déplacement du joueur
-            case 'a':
-            case 's':
-            case 'd':
-                Room1.Update(key);
-                Room1.Display();
-                IsInventoryDisplayed = false;
-                break;
-            case '$': // Afficher les stats du joueur
+            } while(NoQuitInventory);
+        } // Fin de l'inventaire
+        else if(GetAsyncKeyState(0x46)){ // F - Intéraction avec les objets dans la carte
+            int y = Room1.GetPlayer()->GetX();
+            int x = Room1.GetPlayer()->GetY();
+            RoomObject * ro = Room1.CheckAround(x, y);
+            if(ro != nullptr && typeid(*ro).name() == typeid(Chest).name()){ // Si l'objet est un coffre
+                InventoryIndex = 0;
+                bool NoQuitInventory = true;
                 system("cls");
                 Room1.Display();
-                Room1.ShowPlayerStats();
-                _getwch();
-                Room1.Display();
-                IsInventoryDisplayed = false;
-                break;
-            case 'h': // Afficher de l'aide sur les commandes
-                Room1.KeyHelp();
-                _getwch();
-                Room1.Display();
-                IsInventoryDisplayed = false;
-                break;
-            case 'i': // Afficher l'inventaire du joueur
-                system("cls");
-                Room1.Display();
-                Room1.ShowPlayerInventory();
-                IsInventoryDisplayed = true;
-                break;
-            case 'f': // Intéragir avec l'objet aux alentours
-                int pPosX = Room1.GetPlayer()->GetX(); // Retourne les Y !
-                int pPosY = Room1.GetPlayer()->GetY(); // Retourne les X !
-                RoomObject * ro = Room1.CheckAround(pPosY, pPosX);
-                if(ro != nullptr){ // Si l'objet n'est pas nul
-                    Hero * h = Room1.GetPlayer();
-                    h->Interact(ro);
-                    Room1.Display(); // Rafraichir l'affichage
-                    Room1.CheckAround(pPosY, pPosX);
-                }
-                IsInventoryDisplayed = false;
-                break;
+                ro->GetInventory()->Show("Your inventory", InventoryIndex, 2, 25);
+                do { // Navigation dans l'inventaire
+                    system("pause>nul");
+                    if(GetAsyncKeyState(0x57)){ // W
+                        if (InventoryIndex == 0) InventoryIndex = ro->GetInventory()->GetContent().size() - 1;
+                        else InventoryIndex--;
+                        system("cls");
+                        Room1.Display();
+                        ro->GetInventory()->Show("Chest", InventoryIndex, 2, 25);
+                    }else if(GetAsyncKeyState(0x53)){ // S
+                        if (InventoryIndex == ro->GetInventory()->GetContent().size() - 1) InventoryIndex = 0;
+                        else InventoryIndex++;
+                        system("cls");
+                        Room1.Display();
+                        ro->GetInventory()->Show("Chest", InventoryIndex, 2, 25);
+                    }else if (GetAsyncKeyState(VK_LCONTROL) && GetAsyncKeyState(0x46)){ // CTRL + F - Take all
+                        Room1.GetPlayer()->Interact(ro);
+                        system("cls");
+                        Room1.Display();
+                        ro->GetInventory()->Show("Chest", InventoryIndex, 2, 25);
+                    }else if(GetAsyncKeyState(0x46)){ // F - Intéragir avec l'Item
+                        IItem * i = ro->GetInventory()->GetInventoryItemAtIndex(InventoryIndex);
+                        ro->GetInventory()->GetContent().remove(i);
+                        Room1.GetPlayer()->GetInventory()->AddItem(i);
+                        InventoryIndex = 0;
+                        system("cls");
+                        Room1.Display();
+                        ro->GetInventory()->Show("Chest", InventoryIndex, 2, 25);
+                    }else if(GetAsyncKeyState(VK_ESCAPE) || GetAsyncKeyState(VK_TAB)){ // ESCAPE ou TAB - Quitter l'inventaire du coffre
+                        NoQuitInventory = false;
+                        system("cls");
+                        Room1.Display();
+                    }
+                } while(NoQuitInventory);
+            }
         }
+        system("pause>nul");
     }
-    // _getwch();
     return 0;
 }
-

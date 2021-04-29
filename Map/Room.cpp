@@ -95,11 +95,6 @@ namespace He_Arc::RPG
         cout << "Interact with object : f" << endl;
         cout << "Quit : q" << endl;
     }
-    void Room::ShowPlayerInventory(){
-        system("cls");
-        this->Display();
-        this->Player->ShowInventory(2, 25);
-    }
     void Room::ShowPlayerStats(){
         system("cls");
         this->Display();
@@ -124,11 +119,10 @@ namespace He_Arc::RPG
                 }else{
                     std::cout << ROPattern[i][y]->GetChar();
                 }
-                
             }
             std::cout << endl;
         }
-        CheckAround(playerX,playerY);
+        // CheckAround(playerX,playerY);
     }
     // Permet de définir la position du curseur
     void Room::GotoXY(int x, int y)
@@ -183,15 +177,10 @@ namespace He_Arc::RPG
     }
     // Fonction permettant de contrôler ce qu'il y autour du joueur
     RoomObject * Room::CheckAround(int x, int y){
-        int lineNb = 1;
         for(int i = x-1; i <= x+1; i++){
             for(int j = y-1; j <= y+1; j++){
                 switch(ROPattern[i][j]->GetChar()){
                 case 'C':
-                    GotoXY(25,lineNb);
-                    cout << "Chest : ";
-                    lineNb++;
-                    ROPattern[i][j]->GetInventory()->Show(lineNb, 25);
                     return ROPattern[i][j];
                     break;
                 }

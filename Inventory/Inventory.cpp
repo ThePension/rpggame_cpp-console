@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <windows.h>
 #include "../Items/Items/Potion.h"
+#include "../Weapons/Weapon.h"
 using namespace std;
 namespace He_Arc::RPG
 {
@@ -16,23 +17,37 @@ namespace He_Arc::RPG
             Content.push_back(i);
         }
     }
-    void Inventory::Show(int x, int y) {
-        int x1 = x;
+    void Inventory::Show(std::string str, int index, int x, int y) {
+        int x1 = x, j = 0;
         int y1 = y;
+        GotoXY(25,1);
+        cout << str << " : ("<<this->Content.size() << "/10)" << endl;
         if(this->Content.size() == 0){
             GotoXY(y1, x1);
             cout <<" Empty"<< endl;
         }else{
             for(const IItem * i : this->Content) {
                 GotoXY(y1, x1); x1++;
-                cout << " - " << i->GetName() << endl;
-            }   
+                if(j == index){
+                        HANDLE hstdin = GetStdHandle(STD_INPUT_HANDLE);
+                        HANDLE hstdout = GetStdHandle(STD_OUTPUT_HANDLE);
+                        SetConsoleTextAttribute(hstdout, 0x50);
+                        cout << " - " << i->GetName() << endl;
+                        SetConsoleTextAttribute(hstdout, 0x0F);
+                        FlushConsoleInputBuffer(hstdin);
+                    j++;
+                }else{
+                    cout << " - " << i->GetName() << endl;
+                    j++;
+                }
+                
+            }
         }
     }
     void Inventory::AddItem(IItem * i){
         Content.push_back(i);
     }
-    std::list<IItem*> Inventory::GetContent() { 
+    std::list<IItem*> & Inventory::GetContent() {
         return this->Content; 
     }
     // Permet de définir la position du curseur

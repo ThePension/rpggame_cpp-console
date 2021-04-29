@@ -3,6 +3,7 @@
 #include <iostream>
 #include <list>
 #include "../Items/IItem.h"
+using namespace std;
 namespace He_Arc::RPG
 {
     class Inventory
@@ -23,9 +24,9 @@ namespace He_Arc::RPG
             void GotoXY(int x, int y);
             // void DropItem(IItem * i);
             int GetSize() const { return this->Size; }
-            std::list<IItem*> GetContent();
+            std::list<IItem*> & GetContent();
             IItem * GetInventoryItemAtIndex(int i);
-            void Show(int x, int y);
+            void Show(std::string str, int index, int x, int y);
             void DeleteInventory();
     };
 }
