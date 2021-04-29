@@ -16,24 +16,45 @@ By pressing the `h` key, you open the key's help
 
 ## Chest
 In the room, **C** character represents chest.
-If the go next to a chest, its content is displayed on the right
+If you go next to a chest and interact with it by pressing the `f` key, its content will be displayed on the right. The highlighted item is currently selected.
 
 ![alt text](Docs/Images/ChestContent.PNG)
 
-By pressing the `f` key next to a chest, if you have enough places in your inventory, the chest content is added into your inventory.
+### Move in inventory
+
+With the `w` and `s` keys, you can change the selected item.
+
+![alt text](Docs/Images/ChestInventoryChangeSelectedItem.PNG)
+
+### Take item
+
+Then, by pressing the `f` key, if you have enough places in your inventory, the selectionned item will be added into your inventory.
+
+![alt text](Docs/Images/AddingItemIntoYourInventory.PNG)
+
+### Take all the items
+
+Or, by pressing simultaneously the `CTRL` + `f` keys, if you have enough places in your inventory, all the items will be added into your inventory.
 
 ![alt text](Docs/Images/ChestEmpty.PNG)
 
+### Quit chest inventory
+
+You can exit the chest inventory by pressing the `ESCAPE` or `TAB` key.
+
 ## Inventory
-In your inventory (10 items max), a number is displayed next to every item.
+The `TAB` key opens
+In your inventory (10 items max), the same movement system as for the chest inventory is used.
 
 ![alt text](Docs/Images/Inventory.PNG)
 
-By pressing one of these number while your inventory is open, you will interact with it :
+### Interaction with items
+
+By pressing `f`, you will interact with the selected item :
 - Potion : You will drink the potion, and your HPs will increase
-- Weapon : The weapon is then the current weapon (the weapon held by the hero), displayed in red in the inventory (and in the player stats).
+- Weapon : The weapon is then the current weapon (the weapon held by the hero).
 
-![alt text](Docs/Images/CurrentWeapon.PNG)
+### Quit inventory
 
-If you press another key that `i` or a number (between 0 and the last item's number in your inventory), the inventory will close.
+You can exit your inventory by pressing the `TAB` key.
 
