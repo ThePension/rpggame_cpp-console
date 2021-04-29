@@ -18,6 +18,7 @@
 #include "Inventory/Inventory.h"
 #include "Map/Room.h"
 #include "Map/RoomObjects/Objects/Chest.h"
+#include "Items/Items/Gold.h"
 using namespace std;
 using namespace He_Arc::RPG;
 void GotoXY( int x, int y)
@@ -34,7 +35,7 @@ int main(int argc, char const *argv[])
     HWND console = GetConsoleWindow();
     RECT r;
     GetWindowRect(console, &r);
-    MoveWindow(console, r.left, r.top, 500, 220, TRUE);
+    MoveWindow(console, r.left, r.top, 500, 250, true);
     Room Room1 = Room();
     
     Room1.Display();
@@ -58,7 +59,7 @@ int main(int argc, char const *argv[])
         } else if (GetAsyncKeyState(0x44)){ // D - Déplacement vers la droite
             Room1.Update('d');
             Room1.Display();
-        }else if (GetAsyncKeyState(VK_OEM_COMMA)){ // ,  - Afficher les stats du joueur
+        }else if (GetAsyncKeyState(VK_OEM_COMMA)){ // , - Afficher les stats du joueur
             system("cls");
             Room1.Display();
             Room1.GetPlayer()->Show(0, 25);
@@ -141,7 +142,14 @@ int main(int argc, char const *argv[])
                         IItem * i = ro->GetInventory()->GetInventoryItemAtIndex(InventoryIndex);
                         if(i != nullptr){
                             ro->GetInventory()->GetContent().remove(i);
-                            Room1.GetPlayer()->GetInventory()->AddItem(i);
+                            if(typeid(*i).name() == typeid(Gold).name()){
+                                Gold * g = (Gold *)i;
+                                Room1.GetPlayer()->AddGold(g->GetGoldAmount());
+                                delete g;
+                                g = nullptr;
+                            }else{
+                                Room1.GetPlayer()->GetInventory()->AddItem(i);
+                            }
                             InventoryIndex = 0;
                             system("cls");
                             Room1.Display();

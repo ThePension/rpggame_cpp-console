@@ -9,6 +9,7 @@
 #include "../Weapons/Type/Sword.h"
 #include "../Weapons/Type/Staff.h"
 #include "../Items/Items/Potion.h"
+#include "../Items/Items/Gold.h"
 using namespace std;
 namespace He_Arc::RPG
 {
@@ -21,20 +22,23 @@ namespace He_Arc::RPG
         Potion * _potion = new Potion(5, "Small potion", false);
         Potion * _potion2 = new Potion(10, "Medium potion", false);
         Sword * PyroBarbareSword = new Sword(5, "PyroBarbareSword");
+        Gold * _Gold1 = new Gold(25);
         Chest * _chest = new Chest(9,3,'C');
         _chest->GetInventory()->AddItem(_potion2);
         _chest->GetInventory()->AddItem(_potion);
         _chest->GetInventory()->AddItem(PyroBarbareSword);
+        _chest->GetInventory()->AddItem(_Gold1);
 
         // Chest 2
         Staff * _GreekStaff = new Staff(10, "Greek Staff");
         Potion * _potion3 = new Potion(15, "Large potion", false);
         Potion * _potion4 = new Potion(10, "Medium potion", false);
+        Gold * _Gold2 = new Gold(12);
         Chest * _chest2 = new Chest(1,8,'C');
         _chest2->GetInventory()->AddItem(_potion3);
         _chest2->GetInventory()->AddItem(_potion4);
         _chest2->GetInventory()->AddItem(_GreekStaff);
-        
+        _chest2->GetInventory()->AddItem(_Gold2);
         // Création d'un tableau temporaire, contenant le pattern de la pièce
         RoomObject * _pattern[Heigth][Width] = {
             { new Wall(0,0,' '), new Wall(1,0,'_'), new Wall(2,0,'_'), new Wall(3,0,'_'), new Wall(4,0,'_'), new Wall(5,0,'_'), new Wall(6,0,'_'), new Wall(7,0,'_'), new Wall(8,0,'_'), new Wall(9,0,'_'), new Wall(10,0,'_'), new Wall(11,0,'_'), new Wall(12,0,'_'), new Wall(13,0,'_'), new Wall(14,0,'_'), new Wall(15,0,'_'), new Wall(16,0,'_'), new Wall(17,0,'_'), new Wall(18,0,'_'), new Wall(19,0,' ')},

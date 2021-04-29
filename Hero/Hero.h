@@ -41,6 +41,7 @@ namespace He_Arc::RPG
         std::string GetName() const { return Name; }
         friend std::ostream& operator<<(std::ostream& os, const Hero & _Hero);
         Hero & operator=(const Hero &);
+        void AddGold(int Gold);
     };
 }
 #endif

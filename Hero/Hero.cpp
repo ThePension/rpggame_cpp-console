@@ -1,5 +1,6 @@
 #include "Hero.h"
 #include "../Items/Items/Potion.h"
+#include "../Items/Items/Gold.h"
 #include <windows.h>
 using namespace std;
 namespace He_Arc::RPG
@@ -59,6 +60,18 @@ namespace He_Arc::RPG
         // std::list<IItem*> _ROInvent = RO->GetInventory();
         if(c == 'C'){ // Si l'objet est un coffre
             if(RO->GetInventory()->GetContent().size() <= 10 - this->Inventory.GetContent().size()){ // Si l'inventaire n'est pas plein
+                Gold * g;
+                for(IItem * i : RO->GetInventory()->GetContent()){ // Contrôler s'il y a du gold
+                    if(typeid(*i).name() == typeid(Gold).name()){
+                        g = (Gold *)i;
+                    }
+                }
+                if(g != nullptr){
+                    RO->GetInventory()->GetContent().remove(g);
+                    this->GoldAmount += g->GetGoldAmount();
+                    delete g;
+                    g = nullptr;
+                }
                 this->Inventory.AddItems(RO->GetInventory()->GetContent());
             }else{
                 cout << "Not enough space" << endl;
@@ -100,4 +113,7 @@ namespace He_Arc::RPG
         cout << "intelligence : " << this->Intelligence << endl;
         cout << "HP : " << this->HP << endl;
     }*/
+    void Hero::AddGold(int Gold){
+        this->GoldAmount += Gold;
+    }
 }

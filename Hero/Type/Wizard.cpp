@@ -31,6 +31,7 @@ namespace He_Arc::RPG
         cout << "intelligence : " << this->Intelligence << endl;
         cout << "HP : " << this->HP << endl;
         cout << "Mana : " << this->Mana << endl;
+        cout << "Golds : " << this->GoldAmount << endl; GotoXY(x, y); x++;
         cout << "Current weapon :" << endl; GotoXY(x, y); x++;
         if(this->CurrentWeapon != nullptr) cout << " - " << this->CurrentWeapon->GetName() << " (lvl. " << this->CurrentWeapon->GetLevel() << ")" << endl; 
         else cout << " - None" << endl; 
