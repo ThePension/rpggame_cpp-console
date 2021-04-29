@@ -54,6 +54,10 @@ By pressing `f`, you will interact with the selected item :
 - Potion : You will drink the potion, and your HPs will increase
 - Weapon : The weapon is then the current weapon (the weapon held by the hero).
 
+### Drop item
+
+By pressing the `q` key, is you are next to a chest, the selected item will be added into the chest inventory.
+
 ### Quit inventory
 
 You can exit your inventory by pressing the `TAB` key.

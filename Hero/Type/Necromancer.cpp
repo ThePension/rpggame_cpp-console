@@ -26,7 +26,8 @@ namespace He_Arc::RPG
         cout << "HP : " << this->HP << endl;
         cout << "Mana : " << this->Mana << endl;
         cout << "Current weapon :" << endl; GotoXY(x, y); x++;
-        cout << " - " << this->CurrentWeapon->GetName() << " (lvl. " << this->CurrentWeapon->GetLevel() << ")" << endl; 
+        if(this->CurrentWeapon != nullptr) cout << " - " << this->CurrentWeapon->GetName() << " (lvl. " << this->CurrentWeapon->GetLevel() << ")" << endl; 
+        else cout << " - None" << endl; 
         cout << "--- Spells ---" << endl; 
         cout << "- Cast Spell" << endl;
         cout << "- Rise Undeads" << endl;

@@ -18,7 +18,7 @@ namespace He_Arc::RPG
         std::string Name;
         Inventory Inventory;
         Weapon * CurrentWeapon = nullptr;
-        // Inventory * Inventory;
+        int GoldAmount = 0;
     public:
         // Constructors
         Hero();

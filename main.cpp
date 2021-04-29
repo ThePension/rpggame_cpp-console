@@ -58,6 +58,10 @@ int main(int argc, char const *argv[])
         } else if (GetAsyncKeyState(0x44)){ // D - Déplacement vers la droite
             Room1.Update('d');
             Room1.Display();
+        }else if (GetAsyncKeyState(VK_OEM_COMMA)){ // ,  - Afficher les stats du joueur
+            system("cls");
+            Room1.Display();
+            Room1.GetPlayer()->Show(0, 25);
         } else if(GetAsyncKeyState(VK_TAB)){ // TAB - Afficher l'inventaire du joueur
             InventoryIndex = 0;
             bool NoQuitInventory = true;
