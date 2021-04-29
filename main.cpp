@@ -66,25 +66,38 @@ int main(int argc, char const *argv[])
             Room1.GetPlayer()->GetInventory()->Show("Your inventory", InventoryIndex, 2, 25);
             do { // Navigation dans l'inventaire
                 system("pause>nul");
-                if(GetAsyncKeyState(0x57)){ // W - Déplacement vers le haut
-                    if (InventoryIndex == 0) InventoryIndex = Room1.GetPlayer()->GetInventory()->GetContent().size() - 1;
-                    else InventoryIndex--;
-                    system("cls");
-                    Room1.Display();
-                    Room1.GetPlayer()->GetInventory()->Show("Your inventory", InventoryIndex, 2, 25);
-                }else if(GetAsyncKeyState(0x53)){ // S - Déplacement vers le bas
-                    if (InventoryIndex == Room1.GetPlayer()->GetInventory()->GetContent().size() - 1) InventoryIndex=0;
-                    else InventoryIndex++;
-                    system("cls");
-                    Room1.Display();
-                    Room1.GetPlayer()->GetInventory()->Show("Your inventory", InventoryIndex, 2, 25);
-                }else if(GetAsyncKeyState(0x46)){ // F - Interact
-                    IItem * i = Room1.GetPlayer()->GetInventory()->GetInventoryItemAtIndex(InventoryIndex);
-                    Room1.GetPlayer()->Interact(i);
-                    system("cls");
-                    Room1.Display();
-                    Room1.GetPlayer()->GetInventory()->Show("Your inventory", InventoryIndex, 2, 25);
-                }else if(GetAsyncKeyState(VK_TAB)){ // TAB - Quitter l'inventaire
+                if(Room1.GetPlayer()->GetInventory()->GetContent().size() != 0){ // Si l'inventaire est vide
+                    if(GetAsyncKeyState(0x57)){ // W - Déplacement vers le haut
+                        if (InventoryIndex == 0) InventoryIndex = Room1.GetPlayer()->GetInventory()->GetContent().size() - 1;
+                        else InventoryIndex--;
+                        system("cls");
+                        Room1.Display();
+                        Room1.GetPlayer()->GetInventory()->Show("Your inventory", InventoryIndex, 2, 25);
+                    }else if(GetAsyncKeyState(0x53)){ // S - Déplacement vers le bas
+                        if (InventoryIndex == Room1.GetPlayer()->GetInventory()->GetContent().size() - 1) InventoryIndex=0;
+                        else InventoryIndex++;
+                        system("cls");
+                        Room1.Display();
+                        Room1.GetPlayer()->GetInventory()->Show("Your inventory", InventoryIndex, 2, 25);
+                    }else if(GetAsyncKeyState(0x46)){ // F - Interact
+                        IItem * i = Room1.GetPlayer()->GetInventory()->GetInventoryItemAtIndex(InventoryIndex);
+                        Room1.GetPlayer()->Interact(i);
+                        system("cls");
+                        Room1.Display();
+                        Room1.GetPlayer()->GetInventory()->Show("Your inventory", InventoryIndex, 2, 25);
+                    }else if(GetAsyncKeyState(0x51)){ // Q - Drop Item
+                        RoomObject * ro = Room1.CheckAround(Room1.GetPlayer()->GetY(), Room1.GetPlayer()->GetX());
+                        if(ro != nullptr && typeid(*ro).name() == typeid(Chest).name()){ // If there is a chest next to the player
+                            IItem * i = Room1.GetPlayer()->GetInventory()->GetInventoryItemAtIndex(InventoryIndex); // Objet sélectionné
+                            Room1.GetPlayer()->GetInventory()->GetContent().remove(i); // Supprimer l'objet de l'inventaire
+                            ro->GetInventory()->AddItem(i); // Ajouter l'objet dans l'inventaire du coffre
+                            system("cls");
+                            Room1.Display();
+                            Room1.GetPlayer()->GetInventory()->Show("Your inventory", InventoryIndex, 2, 25);
+                        }
+                    }
+                }
+                if(GetAsyncKeyState(VK_TAB)){ // TAB - Quitter l'inventaire
                     NoQuitInventory = false;
                     system("cls");
                     Room1.Display();
@@ -100,7 +113,7 @@ int main(int argc, char const *argv[])
                 bool NoQuitInventory = true;
                 system("cls");
                 Room1.Display();
-                ro->GetInventory()->Show("Your inventory", InventoryIndex, 2, 25);
+                ro->GetInventory()->Show("Chest", InventoryIndex, 2, 25);
                 do { // Navigation dans l'inventaire
                     system("pause>nul");
                     if(GetAsyncKeyState(0x57)){ // W
@@ -122,12 +135,14 @@ int main(int argc, char const *argv[])
                         ro->GetInventory()->Show("Chest", InventoryIndex, 2, 25);
                     }else if(GetAsyncKeyState(0x46)){ // F - Intéragir avec l'Item
                         IItem * i = ro->GetInventory()->GetInventoryItemAtIndex(InventoryIndex);
-                        ro->GetInventory()->GetContent().remove(i);
-                        Room1.GetPlayer()->GetInventory()->AddItem(i);
-                        InventoryIndex = 0;
-                        system("cls");
-                        Room1.Display();
-                        ro->GetInventory()->Show("Chest", InventoryIndex, 2, 25);
+                        if(i != nullptr){
+                            ro->GetInventory()->GetContent().remove(i);
+                            Room1.GetPlayer()->GetInventory()->AddItem(i);
+                            InventoryIndex = 0;
+                            system("cls");
+                            Room1.Display();
+                            ro->GetInventory()->Show("Chest", InventoryIndex, 2, 25);
+                        }
                     }else if(GetAsyncKeyState(VK_ESCAPE) || GetAsyncKeyState(VK_TAB)){ // ESCAPE ou TAB - Quitter l'inventaire du coffre
                         NoQuitInventory = false;
                         system("cls");
