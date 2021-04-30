@@ -62,3 +62,28 @@ By pressing the `q` key, is you are next to a chest, the selected item will be a
 
 You can exit your inventory by pressing the `TAB` key.
 
+## Merchant - Trading
+Merchant are represented in the room with **M** character.
+If you go next to a Merchant and interact with it by pressing the `f` key, the trading interface will be diplayed.
+
+![alt text](Docs/Images/TradingInterface.PNG)
+
+## Move
+
+With the `a` and `d` keys, you can switch from your/Merchant's inventory.
+
+Like in your inventory, you can change the selected with with the `w` and `s` keys.
+
+The price of the current/selected item is displayed in the center of the screen.
+
+## Buy / Sell
+
+By pressing `f` to interact : 
+- If the item is yours, it will be sold to the Merchant, if he has enough money.
+- If the item is his, you will buy it, if you have enough money.
+
+## Quit trading
+
+You can exit your inventory by pressing the `TAB` key.
+
+

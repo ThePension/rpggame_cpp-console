@@ -186,6 +186,7 @@ int main(int argc, char const *argv[])
                     InventoryMerchantIndex = 0;
                 }
                 bool NoQuitInventory = true;
+                GetWindowRect(console, &r);
                 MoveWindow(console, r.left, r.top, 750, 250, true);
                 system("cls");
                 Room1.Display();
@@ -273,6 +274,7 @@ int main(int argc, char const *argv[])
                     else if(Room1.GetPlayer()->GetInventory()->GetContent().size() != 0) cout << Room1.GetPlayer()->GetInventory()->GetInventoryItemAtIndex(InventoryPlayerIndex)->GetPrice() << " Golds";
                 } while(NoQuitInventory);
                 system("cls");
+                GetWindowRect(console, &r);
                 MoveWindow(console, r.left, r.top, 500, 250, true);
                 Room1.Display();
             }
