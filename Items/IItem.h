@@ -17,6 +17,8 @@ namespace He_Arc::RPG
             // Methods
             virtual std::string GetName() const = 0;
             virtual std::string GetFeature() const = 0;
+            // Getters
+            int GetPrice() const { return this->Price; }
     };
 }
 #endif

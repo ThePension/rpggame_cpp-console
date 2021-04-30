@@ -20,7 +20,7 @@ namespace He_Arc::RPG
     void Inventory::Show(std::string str, int index, int x, int y) {
         int x1 = x, j = 0;
         int y1 = y;
-        GotoXY(25,1);
+        GotoXY(y1,1);
         cout << str << " : ("<<this->Content.size() << "/10)" << endl;
         if(this->Content.size() == 0){
             GotoXY(y1, x1);

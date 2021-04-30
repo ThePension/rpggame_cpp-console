@@ -12,6 +12,7 @@
 #include <windows.h>
 #include "Hero/Type/Nordic.h"
 #include "Hero/Type/Wizard.h"
+#include "Hero/Merchant.h"
 #include "Hero/Type/Necromancer.h"
 #include "Weapons/Type/Dagger.h"
 #include "Weapons/Type/Staff.h"
@@ -28,7 +29,12 @@ void GotoXY( int x, int y)
    coord.Y = y;
    SetConsoleCursorPosition( GetStdHandle( STD_OUTPUT_HANDLE ), coord );
 }
-  
+void DrawVertLine(int x, int length){
+    for(int i = 0; i < length; i++){
+        GotoXY(x, i);
+        cout << "|" << endl;
+    }
+}
 int main(int argc, char const *argv[]) 
 {
     // Resize console windows
@@ -169,7 +175,107 @@ int main(int argc, char const *argv[])
                     }
                 } while(NoQuitInventory);
             }
-            // else if(ro != nullptr && typeid(*ro).name() == typeid(Chest).name()) // Si l'objet est un marchant
+            else if(ro != nullptr && typeid(*ro).name() == typeid(Merchant).name()) { // Si l'objet est un marchant
+                Merchant * m = dynamic_cast<Merchant*>(ro);
+                int InventoryPlayerIndex = -1, InventoryMerchantIndex = -1;
+                if(Room1.GetPlayer()->GetInventory()->GetContent().size() > 0){
+                    InventoryPlayerIndex = 0;
+                    InventoryMerchantIndex = -1;
+                }else if(m->GetInventory()->GetContent().size() > 0){
+                    InventoryPlayerIndex = -1;
+                    InventoryMerchantIndex = 0;
+                }
+                bool NoQuitInventory = true;
+                MoveWindow(console, r.left, r.top, 750, 250, true);
+                system("cls");
+                Room1.Display();
+                DrawVertLine(50, 10);
+                DrawVertLine(62, 10);
+                GotoXY(30, 2);
+                cout << Room1.GetPlayer()->GetGold() << " Golds" << endl;
+                GotoXY(70, 2);
+                cout << m->GetGold() << " Golds" << endl;
+                Room1.GetPlayer()->GetInventory()->Show("Your inventory", InventoryPlayerIndex, 3, 25);
+                m->GetInventory()->Show("Merchant", InventoryMerchantIndex, 3, 65);
+                GotoXY(53, 2);
+                if(InventoryPlayerIndex == -1 && m->GetInventory()->GetContent().size() != 0) cout << m->GetInventory()->GetInventoryItemAtIndex(InventoryMerchantIndex)->GetPrice() << " Golds";
+                else if(Room1.GetPlayer()->GetInventory()->GetContent().size() != 0) cout << Room1.GetPlayer()->GetInventory()->GetInventoryItemAtIndex(InventoryPlayerIndex)->GetPrice() << " Golds";
+                do { // Navigation dans les inventaires
+                    system("pause>nul");
+                    if(GetAsyncKeyState(0x57)){ // W
+                        if(InventoryPlayerIndex == -1){
+                            if (InventoryMerchantIndex == 0) InventoryMerchantIndex = m->GetInventory()->GetContent().size() - 1;
+                            else InventoryMerchantIndex--;
+                        }else{
+                            if (InventoryPlayerIndex == 0) InventoryPlayerIndex = Room1.GetPlayer()->GetInventory()->GetContent().size() - 1;
+                            else InventoryPlayerIndex--;
+                        }
+                    }else if(GetAsyncKeyState(0x53)){ // S
+                        if(InventoryPlayerIndex == -1){
+                            if (InventoryMerchantIndex == m->GetInventory()->GetContent().size() - 1) InventoryMerchantIndex = 0;
+                            else InventoryMerchantIndex++;
+                        }else{
+                            if (InventoryPlayerIndex == Room1.GetPlayer()->GetInventory()->GetContent().size() - 1) InventoryPlayerIndex = 0;
+                            else InventoryPlayerIndex++;
+                        }
+                    }else if (GetAsyncKeyState(0x41)){ // A - Déplacement vers la gauche
+                        if(Room1.GetPlayer()->GetInventory()->GetContent().size() > 0) {
+                            InventoryMerchantIndex = -1;
+                            InventoryPlayerIndex = 0;
+                        }
+                    } if (GetAsyncKeyState(0x44)){ // D - Déplacement vers la droite
+                        if(m->GetInventory()->GetContent().size() > 0) {
+                            InventoryMerchantIndex = 0;
+                            InventoryPlayerIndex = -1;
+                        }
+                    } else if(GetAsyncKeyState(0x46)){ // F - Intéragir avec l'Item sélectionné
+                        IItem * i;
+                        if(InventoryPlayerIndex == -1 && m->GetInventory()->GetContent().size() != 0) {
+                            i = m->GetInventory()->GetInventoryItemAtIndex(InventoryMerchantIndex);
+                            if(Room1.GetPlayer()->GetGold() >= i->GetPrice() && Room1.GetPlayer()->GetInventory()->GetContent().size() < 10){ // Si le joueur a assez de gold et assez de place libre dans son inventaire
+                                // Trade
+                                Room1.GetPlayer()->AddGold(-i->GetPrice());
+                                Room1.GetPlayer()->GetInventory()->AddItem(i);
+                                m->AddGold(i->GetPrice());
+                                m->GetInventory()->GetContent().remove(i);
+                                InventoryPlayerIndex = 0;
+                                InventoryMerchantIndex = -1;
+                            }
+                        }
+                        else if(Room1.GetPlayer()->GetInventory()->GetContent().size() != 0) {
+                            i = Room1.GetPlayer()->GetInventory()->GetInventoryItemAtIndex(InventoryPlayerIndex);
+                            if(m->GetGold() >= i->GetPrice() && m->GetInventory()->GetContent().size() < 10){ // Si le marchand a assez de gold et assez de place libre dans son inventaire
+                                // Trade
+                                Room1.GetPlayer()->AddGold(i->GetPrice());
+                                Room1.GetPlayer()->GetInventory()->GetContent().remove(i);
+                                m->AddGold(-i->GetPrice());
+                                m->GetInventory()->AddItem(i);
+                                InventoryPlayerIndex = -1;
+                                InventoryMerchantIndex = 0;
+                            }
+                        }
+                    }else if(GetAsyncKeyState(VK_ESCAPE) || GetAsyncKeyState(VK_TAB)){ // ESCAPE ou TAB - Quitter l'échange de trade
+                        NoQuitInventory = false;
+                    }
+                    // Affichage
+                    system("cls");
+                    Room1.Display();
+                    DrawVertLine(50, 10);
+                    DrawVertLine(62, 10);
+                    GotoXY(30, 2);
+                    cout << Room1.GetPlayer()->GetGold() << " Golds" << endl;
+                    GotoXY(70, 2);
+                    cout << m->GetGold() << " Golds" << endl;
+                    Room1.GetPlayer()->GetInventory()->Show("Your inventory", InventoryPlayerIndex, 3, 25);
+                    m->GetInventory()->Show("Merchant", InventoryMerchantIndex, 3, 65);
+                    GotoXY(53, 2);
+                    if(InventoryPlayerIndex == -1 && m->GetInventory()->GetContent().size() != 0) cout << m->GetInventory()->GetInventoryItemAtIndex(InventoryMerchantIndex)->GetPrice() << " Golds";
+                    else if(Room1.GetPlayer()->GetInventory()->GetContent().size() != 0) cout << Room1.GetPlayer()->GetInventory()->GetInventoryItemAtIndex(InventoryPlayerIndex)->GetPrice() << " Golds";
+                } while(NoQuitInventory);
+                system("cls");
+                MoveWindow(console, r.left, r.top, 500, 250, true);
+                Room1.Display();
+            }
         }
         #pragma endregion
         system("pause>nul");
