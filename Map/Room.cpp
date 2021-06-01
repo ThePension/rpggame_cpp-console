@@ -88,8 +88,8 @@ namespace He_Arc::RPG
     void Room::KeyHelp(){
         system("cls");
         cout << "Move player : w,a,s,d" << endl;
-        cout << "Open inventory : i" << endl;
-        cout << "Show player stats : $" << endl;
+        cout << "Open inventory : TAB" << endl;
+        cout << "Show player stats : ," << endl;
         cout << "Interact with object : f" << endl;
         cout << "Quit : q" << endl;
     }

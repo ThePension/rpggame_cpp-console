@@ -5,10 +5,10 @@
 
 ![alt text](Docs/Images/Spawn.PNG)
 
-By pressing the `h` key, you open the key's help 
+By pressing the `h` key, you open the keys help 
 - You can move your hero with `wasd` keys
-- You can show your hero's stats by pressing the `$` key
-- You can show your hero's inventory by pressing the `i` key
+- You can show your hero's stats by pressing the `,` key
+- You can show your hero's inventory by pressing the `TAB` key
 - You can interact with objects in the room by pressing the `f` key
 - You can exit the game by pressing the `q` key
 
@@ -78,7 +78,7 @@ The price of the current/selected item is displayed in the center of the screen.
 
 ## Buy / Sell
 
-By pressing `f` to interact : 
+By pressing `f` to interact :
 - If the item is yours, it will be sold to the Merchant, if he has enough money.
 - If the item is his, you will buy it, if you have enough money.
 
