@@ -5,16 +5,12 @@
 using namespace std;
 namespace He_Arc::RPG
 {
-    // Constructors
     Hero::Hero() {
         this->Strength = 0;
         this->Agility = 0;
         this->Intelligence = 0;
         this->HP = 0;
         this->Name = "no_name";
-    }
-    Hero::~Hero() {
-        while(!this->Inventory.GetContent().empty()) delete this->Inventory.GetContent().front(), this->Inventory.GetContent().pop_front();
     }
     Hero::Hero(const Hero & hero){
         this->Strength = hero.Strength;
@@ -23,8 +19,7 @@ namespace He_Arc::RPG
         this->HP = hero.HP;
         this->Name = hero.Name;
     }
-    Hero::Hero(int x, int y, char charac, int _strength, int _agility, int _intelligence, double _hp, std::string _name)
-                : RoomObject(x, y, charac) // :Strength(_strength), Agility(_agility), Intelligence(_intelligence), HP(_hp), Name(_name), Dagger(_dagger) { }
+    Hero::Hero(int x, int y, char charac, int _strength, int _agility, int _intelligence, double _hp, std::string _name) : RoomObject(x, y, charac)
     {
         this->Strength = _strength;
         this->Agility = _agility;
@@ -32,8 +27,9 @@ namespace He_Arc::RPG
         this->HP = _hp;
         this->Name = _name;
     }
-                
-    // Methods
+    Hero::~Hero() {
+        while(!this->Inventory.GetContent().empty()) delete this->Inventory.GetContent().front(), this->Inventory.GetContent().pop_front();
+    }            
     ostream& operator<<(ostream& os, const Hero & _Hero)
     {
         os << "=================" << endl;
@@ -58,10 +54,10 @@ namespace He_Arc::RPG
     void Hero::Interact(RoomObject * RO) {
         char c = RO->GetChar();
         // std::list<IItem*> _ROInvent = RO->GetInventory();
-        if(c == 'C'){ // Si l'objet est un coffre
-            if(RO->GetInventory()->GetContent().size() <= 10 - this->Inventory.GetContent().size()){ // Si l'inventaire n'est pas plein
+        if(c == 'C'){ // If object if a chest
+            if(RO->GetInventory()->GetContent().size() <= 10 - this->Inventory.GetContent().size()){ // If Inventory isn't full
                 Gold * g;
-                for(IItem * i : RO->GetInventory()->GetContent()){ // Contrôler s'il y a du gold
+                for(IItem * i : RO->GetInventory()->GetContent()){ // Control if there is gold
                     if(typeid(*i).name() == typeid(Gold).name()){
                         g = (Gold *)i;
                     }
@@ -80,13 +76,13 @@ namespace He_Arc::RPG
         }
     }
     void Hero::Interact(IItem * i){
-        if(i->GetName().find("potion") != -1){ // Si l'objet est une potion
+        if(i->GetName().find("potion") != -1){ // If Item is a potion
             Potion * p = (Potion *)i; // Utiliser du dynamic_cast pour pouvoir caster l'item en potion
             this->HP += p->GetHealAmount();
             this->Inventory.GetContent().remove(p);
             delete p;
             p = nullptr;
-        }else if(i->GetFeature().find("Weapon") != -1){ // Si l'objet est une arme
+        }else if(i->GetFeature().find("Weapon") != -1){ // If Item is Weapon
             Weapon * w = (Weapon *)i;
             this->CurrentWeapon = w;
         }

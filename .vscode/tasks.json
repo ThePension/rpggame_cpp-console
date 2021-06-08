@@ -18,6 +18,7 @@
 				"${fileDirname}\\Items\\*.cpp",
 				"${fileDirname}\\Items\\Items\\*.cpp",
 				"${fileDirname}\\Inventory\\*.cpp",
+				"${fileDirname}\\Log\\*.cpp",
 				"-o",
 				"${fileDirname}\\${fileBasenameNoExtension}.exe",
 			],

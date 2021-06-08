@@ -10,10 +10,30 @@ namespace He_Arc::RPG
             // Attributs
             int GoldAmount;
         public:
+            /**
+             * @brief Construct a new Gold object
+             * 
+             * @param _GoldAmount 
+             */
             Gold(int _GoldAmount);
-            // Methods
+            // Getter
+            /**
+             * @brief Get the Name object
+             * 
+             * @return std::string 
+             */
             std::string GetName() const override;
+            /**
+             * @brief Get the Feature object
+             * 
+             * @return std::string 
+             */
             std::string GetFeature() const override;
+            /**
+             * @brief Get the Gold Amount object
+             * 
+             * @return int 
+             */
             int GetGoldAmount() const { return this->GoldAmount; }
     };
 }
