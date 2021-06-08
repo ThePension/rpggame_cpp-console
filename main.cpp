@@ -9,6 +9,7 @@
 #include <iterator>
 #include <conio.h>
 #include <algorithm>
+#include <excpt.h>
 #include <windows.h>
 #include "Hero/Type/Nordic.h"
 #include "Hero/Type/Wizard.h"
@@ -18,6 +19,7 @@
 #include "Weapons/Type/Staff.h"
 #include "Inventory/Inventory.h"
 #include "Map/Room.h"
+#include "Log/Log.h"
 #include "Map/RoomObjects/Objects/Chest.h"
 #include "Items/Items/Gold.h"
 using namespace std;
@@ -44,11 +46,14 @@ int main(int argc, char const *argv[])
     MoveWindow(console, r.left, r.top, 500, 250, true);
     Room Room1 = Room();
     
+    Log log = Log();
+
     Room1.Display();
     bool IsInventoryDisplayed = false;
     GotoXY(25, 1);
     cout << "Key help : h" << endl;
     int InventoryIndex = 0;
+    
     while(true){
         #pragma region Déplacements
         if(GetAsyncKeyState(0x57)){ // W - Move to the top
@@ -81,7 +86,7 @@ int main(int argc, char const *argv[])
             system("cls");
             Room1.Display();
             Room1.GetPlayer()->GetInventory()->Show("Your inventory", InventoryIndex, 2, 25);
-            do { // Navigation dans l'inventaire
+            do { // Player's inventory's navigation
                 system("pause>nul");
                 if(Room1.GetPlayer()->GetInventory()->GetContent().size() != 0){ // If inventory is empty
                     if(GetAsyncKeyState(0x57)){ // W - Move to the top
@@ -120,7 +125,7 @@ int main(int argc, char const *argv[])
                     Room1.Display();
                 }
             } while(NoQuitInventory);
-        } // Fin de l'inventaire
+        } // End of inventory
         #pragma endregion
         #pragma region Intéractions avec la carte
         else if(GetAsyncKeyState(0x46)){ // F - Interactions with map objects
@@ -128,6 +133,7 @@ int main(int argc, char const *argv[])
             int x = Room1.GetPlayer()->GetY();
             RoomObject * ro = Room1.CheckAround(x, y);
             if(ro != nullptr && typeid(*ro).name() == typeid(Chest).name()){ // If Object is a chest
+                
                 InventoryIndex = 0;
                 bool NoQuitInventory = true;
                 system("cls");
@@ -148,11 +154,17 @@ int main(int argc, char const *argv[])
                         Room1.Display();
                         ro->GetInventory()->Show("Chest", InventoryIndex, 2, 25);
                     }else if (GetAsyncKeyState(VK_LCONTROL) && GetAsyncKeyState(0x46)){ // CTRL + F - Take all
-                        Room1.GetPlayer()->Interact(ro);
-                        system("cls");
-                        Room1.Display();
-                        ro->GetInventory()->Show("Chest", InventoryIndex, 2, 25);
-                    }else if(GetAsyncKeyState(0x46)){ // F - Intéragir avec l'Item
+                        //try {
+                            Room1.GetPlayer()->Interact(ro);
+                            system("cls");
+                            Room1.Display();
+                            ro->GetInventory()->Show("Chest", InventoryIndex, 2, 25);
+                       /* } catch(exception e){
+                            log.ErrorLog(e);
+                        } catch (...) {
+                            log.ErrorLog("Unknown error");
+                        }*/
+                    }else if(GetAsyncKeyState(0x46)){ // F - Interact with item
                         IItem * i = ro->GetInventory()->GetInventoryItemAtIndex(InventoryIndex);
                         if(i != nullptr){
                             ro->GetInventory()->GetContent().remove(i);
@@ -169,14 +181,14 @@ int main(int argc, char const *argv[])
                             Room1.Display();
                             ro->GetInventory()->Show("Chest", InventoryIndex, 2, 25);
                         }
-                    }else if(GetAsyncKeyState(VK_ESCAPE) || GetAsyncKeyState(VK_TAB)){ // ESCAPE ou TAB - Quitter l'inventaire du coffre
+                    }else if(GetAsyncKeyState(VK_ESCAPE) || GetAsyncKeyState(VK_TAB)){ // ESCAPE or TAB - Quit chest inventory
                         NoQuitInventory = false;
                         system("cls");
                         Room1.Display();
                     }
                 } while(NoQuitInventory);
             }
-            else if(ro != nullptr && typeid(*ro).name() == typeid(Merchant).name()) { // Si l'objet est un marchant
+            else if(ro != nullptr && typeid(*ro).name() == typeid(Merchant).name()) { // If object is merchant
                 Merchant * m = dynamic_cast<Merchant*>(ro);
                 int InventoryPlayerIndex = -1, InventoryMerchantIndex = -1;
                 if(Room1.GetPlayer()->GetInventory()->GetContent().size() > 0){
@@ -202,7 +214,7 @@ int main(int argc, char const *argv[])
                 GotoXY(53, 2);
                 if(InventoryPlayerIndex == -1 && m->GetInventory()->GetContent().size() != 0) cout << m->GetInventory()->GetInventoryItemAtIndex(InventoryMerchantIndex)->GetPrice() << " Golds";
                 else if(Room1.GetPlayer()->GetInventory()->GetContent().size() != 0) cout << Room1.GetPlayer()->GetInventory()->GetInventoryItemAtIndex(InventoryPlayerIndex)->GetPrice() << " Golds";
-                do { // Navigation dans les inventaires
+                do { // Inventories navigation
                     system("pause>nul");
                     if(GetAsyncKeyState(0x57)){ // W
                         if(InventoryPlayerIndex == -1){
@@ -220,21 +232,23 @@ int main(int argc, char const *argv[])
                             if (InventoryPlayerIndex == Room1.GetPlayer()->GetInventory()->GetContent().size() - 1) InventoryPlayerIndex = 0;
                             else InventoryPlayerIndex++;
                         }
-                    }else if (GetAsyncKeyState(0x41)){ // A - Déplacement vers la gauche
+                    }else if (GetAsyncKeyState(0x41)){ // A - Move to the left
                         if(Room1.GetPlayer()->GetInventory()->GetContent().size() > 0) {
                             InventoryMerchantIndex = -1;
                             InventoryPlayerIndex = 0;
                         }
-                    } if (GetAsyncKeyState(0x44)){ // D - Déplacement vers la droite
+                    } if (GetAsyncKeyState(0x44)){ // D - Move to the right
                         if(m->GetInventory()->GetContent().size() > 0) {
                             InventoryMerchantIndex = 0;
                             InventoryPlayerIndex = -1;
                         }
-                    } else if(GetAsyncKeyState(0x46)){ // F - Intéragir avec l'Item sélectionné
+                    } else if(GetAsyncKeyState(0x46)){ // F - Interact with selected item
                         IItem * i;
                         if(InventoryPlayerIndex == -1 && m->GetInventory()->GetContent().size() != 0) {
                             i = m->GetInventory()->GetInventoryItemAtIndex(InventoryMerchantIndex);
                             if(Room1.GetPlayer()->GetGold() >= i->GetPrice() && Room1.GetPlayer()->GetInventory()->GetContent().size() < 10){ // Si le joueur a assez de gold et assez de place libre dans son inventaire
+                                // Log
+                                log.TradeLog(m, i, Room1.GetPlayer());
                                 // Trade
                                 Room1.GetPlayer()->AddGold(-i->GetPrice());
                                 Room1.GetPlayer()->GetInventory()->AddItem(i);
@@ -242,11 +256,14 @@ int main(int argc, char const *argv[])
                                 m->GetInventory()->GetContent().remove(i);
                                 InventoryPlayerIndex = 0;
                                 InventoryMerchantIndex = -1;
+                                
                             }
                         }
                         else if(Room1.GetPlayer()->GetInventory()->GetContent().size() != 0) {
                             i = Room1.GetPlayer()->GetInventory()->GetInventoryItemAtIndex(InventoryPlayerIndex);
-                            if(m->GetGold() >= i->GetPrice() && m->GetInventory()->GetContent().size() < 10){ // Si le marchand a assez de gold et assez de place libre dans son inventaire
+                            if(m->GetGold() >= i->GetPrice() && m->GetInventory()->GetContent().size() < 10){ // If merchant a enough gold/places
+                                // Log
+                                log.TradeLog(Room1.GetPlayer(), i, m);
                                 // Trade
                                 Room1.GetPlayer()->AddGold(i->GetPrice());
                                 Room1.GetPlayer()->GetInventory()->GetContent().remove(i);
@@ -256,10 +273,10 @@ int main(int argc, char const *argv[])
                                 InventoryMerchantIndex = 0;
                             }
                         }
-                    }else if(GetAsyncKeyState(VK_ESCAPE) || GetAsyncKeyState(VK_TAB)){ // ESCAPE ou TAB - Quitter l'échange de trade
+                    }else if(GetAsyncKeyState(VK_ESCAPE) || GetAsyncKeyState(VK_TAB)){ // ESCAPE or TAB - Quit trading system
                         NoQuitInventory = false;
                     }
-                    // Affichage
+                    // Display
                     system("cls");
                     Room1.Display();
                     DrawVertLine(50, 10);

@@ -1,0 +1,40 @@
+2021-06-08 16:47:20
+PyroBarbare has sold a Small potion : 5HP (Heals the player HP, 6 golds) at Alakazam
+2021-06-08 16:47:21
+PyroBarbare bought a Medium potion : 10HP (Heals the player HP, 8 golds) at Alakazam
+2021-06-08 16:47:24
+PyroBarbare bought a Small potion : 5HP (Heals the player HP, 6 golds) at Alakazam
+2021-06-08 16:47:26
+PyroBarbare bought a Large potion : 15HP (Heals the player HP, 12 golds) at Alakazam
+2021-06-08 16:47:39
+PyroBarbare has sold a Large potion : 15HP (Heals the player HP, 12 golds) at Alakazam
+2021-06-08 16:47:40
+PyroBarbare has sold a Medium potion : 10HP (Heals the player HP, 8 golds) at Alakazam
+2021-06-08 16:47:41
+PyroBarbare has sold a Medium potion : 10HP (Heals the player HP, 8 golds) at Alakazam
+2021-06-08 16:47:41
+PyroBarbare has sold a Small potion : 5HP (Heals the player HP, 6 golds) at Alakazam
+2021-06-08 16:47:42
+PyroBarbare has sold a Sword (Weapon, 15 golds) at Alakazam
+2021-06-08 16:47:47
+PyroBarbare bought a Large potion : 15HP (Heals the player HP, 12 golds) at Alakazam
+2021-06-08 16:47:48
+PyroBarbare bought a Medium potion : 10HP (Heals the player HP, 8 golds) at Alakazam
+2021-06-08 16:48:31
+PyroBarbare has sold a Medium potion : 10HP (Heals the player HP, 8 golds) at Alakazam
+2021-06-08 16:48:32
+PyroBarbare bought a Medium potion : 10HP (Heals the player HP, 8 golds) at Alakazam
+2021-06-08 16:48:33
+PyroBarbare has sold a Sword (Weapon, 15 golds) at Alakazam
+2021-06-08 16:48:34
+PyroBarbare bought a Medium potion : 10HP (Heals the player HP, 8 golds) at Alakazam
+2021-06-08 16:48:35
+PyroBarbare has sold a Medium potion : 10HP (Heals the player HP, 8 golds) at Alakazam
+2021-06-08 16:48:35
+PyroBarbare bought a Sword (Weapon, 15 golds) at Alakazam
+2021-06-08 16:48:36
+PyroBarbare has sold a Medium potion : 10HP (Heals the player HP, 8 golds) at Alakazam
+2021-06-08 16:48:36
+PyroBarbare bought a Medium potion : 10HP (Heals the player HP, 8 golds) at Alakazam
+2021-06-08 16:48:37
+PyroBarbare has sold a Medium potion : 10HP (Heals the player HP, 8 golds) at Alakazam

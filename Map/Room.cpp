@@ -44,7 +44,7 @@ namespace He_Arc::RPG
         // PNJ
         Potion * _potion5 = new Potion(15, 12, "Large potion", false);
         Potion * _potion6 = new Potion(10, 8, "Medium potion", false);
-        Merchant * _Wizard1 = new Merchant(17, 7, 'M', "Merchant", 300);
+        Merchant * _Wizard1 = new Merchant(17, 7, 'M', "Alakazam", 300);
         _Wizard1->GetInventory()->AddItem(_potion5);
         _Wizard1->GetInventory()->AddItem(_potion6);
         // Création d'un tableau temporaire, contenant le pattern de la pièce
