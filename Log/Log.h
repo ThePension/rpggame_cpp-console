@@ -15,6 +15,7 @@ namespace He_Arc::RPG
             void MessageLog(std::string message);
             void TradeLog(Hero* h, IItem * i, Merchant* m);
             void TradeLog(Merchant* m, IItem * i, Hero* h);
+            void TradeLog(Hero* h2, IItem * i, Hero* h1);
             void ErrorLog(exception e);
             void ErrorLog(string message);
             string getCurrentDateTime();

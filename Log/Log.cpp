@@ -55,6 +55,26 @@ namespace He_Arc::RPG
         }
     }
     /**
+     * @brief Write details of a trade in a log file (trades.txt)
+     * 
+     * @param h2 Hero who has sold an item
+     * @param i Item that has been sold
+     * @param h1 Hero who bought the Item
+     */
+    void Log::TradeLog(Hero* h2, IItem * i, Hero* h1) {
+        try{
+            ofstream TradesLogFile;
+            TradesLogFile.open("trades.txt", ios::app);
+            TradesLogFile << getCurrentDateTime() << "\n";
+            TradesLogFile << h1->GetName() << " bought a " << i->GetName() << " (" << i->GetFeature() << ", "<< i->GetPrice() << " golds) at " << h2->GetName() << "\n";
+            TradesLogFile.close();
+        } catch(exception e){
+            ErrorLog(e);
+        } catch(...) {
+            ErrorLog("Unkown error happened while reading or writing trading log file");
+        }
+    }
+    /**
      * @brief Write details of an error in a log file (errors.txt)
      * 
      * @param e Exception

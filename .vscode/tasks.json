@@ -19,6 +19,7 @@
 				"${fileDirname}\\Items\\Items\\*.cpp",
 				"${fileDirname}\\Inventory\\*.cpp",
 				"${fileDirname}\\Log\\*.cpp",
+				"${fileDirname}\\TradingSystem\\*.cpp",
 				"-o",
 				"${fileDirname}\\${fileBasenameNoExtension}.exe",
 			],
