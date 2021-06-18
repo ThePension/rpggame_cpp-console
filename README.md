@@ -1,5 +1,13 @@
 # CPP_FilRouge_ISCD_Aubert
 
+Aubert Nicolas, ISC1d © 2021 All rights reserved, HE-Arc
+
+Supervised by Tièche François and Németh Julia.
+
+## Structure
+
+![alt text](Docs/Images/tree.PNG)
+
 ## Class diagram
 
 ![alt text](Docs/Images/UMLDiagram.png)
