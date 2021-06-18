@@ -1,6 +1,10 @@
 # CPP_FilRouge_ISCD_Aubert
 
-## Control
+## Class diagram
+
+![alt text](Docs/Images/UMLDiagram.png)
+
+## Game - Controls
 **You spawn in a room. Your hero is represented with a red X**
 
 ![alt text](Docs/Images/Spawn.PNG)
@@ -82,8 +86,10 @@ By pressing `f` to interact :
 - If the item is yours, it will be sold to the Merchant, if he has enough money.
 - If the item is his, you will buy it, if you have enough money.
 
+A track of all sales is kept in a file named "trades.txt" at the root of the program.
+
 ## Quit trading
 
-You can exit your inventory by pressing the `TAB` key.
+You can exit the trading system by pressing the `TAB` key.
 
 

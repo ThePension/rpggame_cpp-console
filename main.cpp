@@ -45,10 +45,12 @@ int main(int argc, char const *argv[])
     RECT r;
     GetWindowRect(console, &r);
     MoveWindow(console, r.left, r.top, 500, 250, true);
+
+    // Initialize components
     Room Room1 = Room();
-    
     Log log = Log();
     TradingSystem _TradingSystem = TradingSystem();
+
     Room1.Display();
     bool IsInventoryDisplayed = false;
     GotoXY(25, 1);
@@ -213,7 +215,6 @@ int main(int argc, char const *argv[])
                 GetWindowRect(console, &r);
                 MoveWindow(console, r.left, r.top, 500, 250, true);
                 Room1.Display();
-
             }
         }
         #pragma endregion

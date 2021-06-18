@@ -1,0 +1,168 @@
+<diagram program="umletino" version="14.3.0"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>88</x><y>0</y><w>240</w><h>240</h></coordinates><panel_attributes>Room
+--
+- Width: int
+- Heigth : int
+- Player : Hero *
+- ROPattern : RoomObject[10][20] *
+--
++ Room()
++ ~Room()
++ Update(char key) : void
++ Display() : void
++ CheckAround(int x, int y) : RoomObject *
++ GotoXY(int x, int y) : void
++ ShowPlayerStats() : void
++ ShowPlayerInventory() : void
++ KeyHelp() : void
++ GetPlayer() : Hero *
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>488</x><y>0</y><w>210</w><h>240</h></coordinates><panel_attributes>RoomObject
+--
+# PosX : int
+# PosY : int
+# Character : char
+--
++ GetChar() const : char
++ GetX() const : int
++ GetY() const : int
++ SetX(int x) : void
++ SetY(int y) : void
++ GotoXY(int x, int y) : void
+/+ virtual Show(int x, int y) : void/
+/+ Interact(RoomObject *) : void/
+/+ GetInventory() : list&lt;IItem*&gt;/
+/+ DeleteInventory() : void/</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>528</x><y>330</y><w>210</w><h>140</h></coordinates><panel_attributes>Wall
+--
++ Wall()
++ Wall(const Wall &amp;)
++ Wall(int X, int Y, char charac)
++ Show(int x, int y) : void
++ Interact(RoomObject *) : void
++ GetInventory() : list&lt;IItem*&gt;
++ DeleteInventory() : void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>808</x><y>300</y><w>210</w><h>190</h></coordinates><panel_attributes>Chest
+--
+- Inventory : list&lt;IItem*&gt;
+--
++ Chest()
++ Chest(int x, int y, char charac)
++ ~Chest()
++ SetChestContent(const list&lt;IItem*&gt;) : void
++ AddItem(IItem *) : void
++ Show(int x, int y) : void
++ Interact(RoomObject *) : void
++ GetInventory() : list&lt;IItem*&gt;
++ DeleteInventory() : void
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>358</x><y>236</y><w>220</w><h>100</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>200;10;10;80</additional_attributes></element><element><id>Relation</id><coordinates><x>638</x><y>236</y><w>190</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;170;70</additional_attributes></element><element><id>UMLClass</id><coordinates><x>658</x><y>770</y><w>250</w><h>200</h></coordinates><panel_attributes>Weapon
+--
+# Level = 0 : int
+# XP = 0 : int
+--
++ Weapon()
++ Weapon(string name, bool CanBeStacked)
+/+ virtual Stats : void/
+/+ virtual GetName() const : string/
++ GetFeature() : string
++ GetLevel() : int
++ AddXP() : void
++ LevelUp() : void
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>868</x><y>540</y><w>210</w><h>130</h></coordinates><panel_attributes>IItem
+--
+# Name : string
+# CanBeStacked : bool
+--
++ IItem()
++ IItem(string name, bool CanBeStacked)
+/+ virtual GetName const : string/
+/+ virtual GetFeature() const : string/</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>778</x><y>666</y><w>170</w><h>120</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>150;10;10;100</additional_attributes></element><element><id>UMLClass</id><coordinates><x>928</x><y>770</y><w>210</w><h>130</h></coordinates><panel_attributes>Potion
+--
+- HealAmount : int
+--
++ Potion(int HealAmount, string name, bool canBeStacked)
++ GetName() : string
++ GetFeature() : string
++ GetHealAmount() : int</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>998</x><y>666</y><w>50</w><h>120</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;30;100</additional_attributes></element><element><id>UMLClass</id><coordinates><x>898</x><y>1040</y><w>210</w><h>130</h></coordinates><panel_attributes>Dagger
+--
+- Damage: int
+--
++ Dagger()
++ Stats() : void
++ GetDamage() const: int
++ GetName() const : string</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>598</x><y>966</y><w>150</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>130;10;10;70</additional_attributes></element><element><id>UMLClass</id><coordinates><x>418</x><y>1040</y><w>210</w><h>130</h></coordinates><panel_attributes>Sword
+--
+- Damage : int
+--
++ Sword()
++ Sword(int damage, string name)
++ Stats() : void
++ GetDamage() const: int
++ GetName() const : string</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>758</x><y>966</y><w>30</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;70</additional_attributes></element><element><id>UMLClass</id><coordinates><x>668</x><y>1040</y><w>210</w><h>130</h></coordinates><panel_attributes>Staff
+--
+- HealAmount: int
+--
++ Staff()
++ Staff(int healAmount, string name)
++ Stats() : void
++ GetHealAmount() const: int
++ GetName() const : string</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>848</x><y>966</y><w>160</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;140;70</additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>320</y><w>500</w><h>440</h></coordinates><panel_attributes>Hero
+--
+# Strength : int
+# Agility : int
+# Intelligence : int
+# HP : double
+# Name : string
+# Inventory : Inventory
+# CurrentWeapon : Weapon *
+--
++ Hero()
++ Hero(const Hero &amp;)
++ Hero(int x, int y, char charac, int strength, int agility, int intelligence, double hp, string name)
++ ~Hero()
+/+ virtual Show(int x, int y) : void/
+/+ virtual Interact(const Hero &amp;) : void/
++ virtual Interact(RoomObject *) : void
++ Interact(IItem *) : void
++ GetInventory() : lst&lt;IItem*&gt;
++ GetInventoryItemAtIndex(int i) : IItem *
++ DeleteInventory() : void
++ AddItems(list&lt;IItem*&gt;) : void
++ AddItem(IItem *) : void
++ ShowInventory(int x, int y) : void
++ GetAgility() const : int
++ GetStrength() const : int
++ GetIntelligence() const : int
++ GetHP() const : double
++ GetName() const : string
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>30</x><y>820</y><w>210</w><h>70</h></coordinates><panel_attributes>Nordic
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>290</x><y>820</y><w>210</w><h>70</h></coordinates><panel_attributes>Wizard
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>290</x><y>940</y><w>210</w><h>70</h></coordinates><panel_attributes>Necromancer
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>118</x><y>756</y><w>30</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;60</additional_attributes></element><element><id>Relation</id><coordinates><x>378</x><y>756</y><w>30</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;60</additional_attributes></element><element><id>Relation</id><coordinates><x>378</x><y>886</y><w>30</w><h>70</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;50</additional_attributes></element><element><id>Relation</id><coordinates><x>578</x><y>236</y><w>90</w><h>110</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;70;90</additional_attributes></element><element><id>UMLClass</id><coordinates><x>780</x><y>0</y><w>210</w><h>110</h></coordinates><panel_attributes>TradingSystem
+--
++ TradingSystem()
++ Init(Merchant *, Room &amp;) : void
++ Init(Hero *, Room &amp;) : void
++ DrawVertLine(int x, int y) : void
++ GotoXY(int x, int y) : void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>780</x><y>120</y><w>250</w><h>140</h></coordinates><panel_attributes>Log
+--
++ Log()
++ TradeLog(Hero *, Iitem *, Merchant *) : void
++ TradeLog(Merchant *, Iitem *, Hero *) : void
++ TradeLog(Hero *, Iitem *, Hero *) : void
++ ErrorLog(exception) : void
++ ErrorLog(string) : void
++ getCurrentDateTime() : string</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>550</x><y>500</y><w>250</w><h>220</h></coordinates><panel_attributes>Inventory
+--
+- Size : int
+- Content : list&lt;Iitem*&gt;
+--
++ Inventory()
++ ~Inventory()
++ AddItems(const list&lt;Iitem*&gt;) : void
++ AddItem(Iitem *) : void
++ GotoXY(int x, int y) : void
++ GetSize() : int
++ GetContent() : list&lt;Iitem*&gt;
++ GetInventoryItemAtIndex(int i) : IItem *
++ Show(string str, int index, int x, int y) : void
++ DeleteInventory() : void</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>490</x><y>520</y><w>80</w><h>60</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;10;60;40</additional_attributes></element><element><id>Relation</id><coordinates><x>190</x><y>230</y><w>30</w><h>110</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;10;10;90</additional_attributes></element><element><id>Relation</id><coordinates><x>790</x><y>540</y><w>90</w><h>80</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;10;70;60</additional_attributes></element><element><id>Relation</id><coordinates><x>500</x><y>710</y><w>180</w><h>150</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;10;160;130</additional_attributes></element></diagram>
